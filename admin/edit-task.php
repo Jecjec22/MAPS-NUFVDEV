@@ -150,13 +150,16 @@ foreach($result2 as $row3)
                            <br>
                           <div class="field">
                               <div class="field">
-                              <label class="label_field">Project Priority</label>
+                              <label class="label_field">Services Needed</label>
                               <select type="text" name="tpriority" class="form-control" required='true'>
                                  <option value="<?php echo htmlentities($row->TaskPriority);?>"><?php echo htmlentities($row->TaskPriority);?></option>
-                                 <option value="Normal">Normal</option>
-                                 <option value="Medium">Medium</option>
-                                 <option value="Urgent">Urgent</option>
-                                 <option value="Most Urgent">Most Urgent</option>
+                                 <option value="Repair">Repair</option>
+                                 <option value="Maintenance">Maintenance</option>
+                                 <option value="Installation">Installation</option>
+                                 <option value="Repair and Maintenance">Repair and Maintenance</option>
+                                 <option value="Repair and Installation">Repair and Installation</option>
+                                 <option value="Maintenance and Installation">Maintenance and Installation</option>
+                                 <option value="Repair, Maintenance, and Installation">Repair, Maintenance, and Installation</option>
                                 
                               </select>
                            </div>

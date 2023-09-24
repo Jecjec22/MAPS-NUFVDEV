@@ -105,12 +105,12 @@ foreach($results as $row)
 {               ?> 
                                    <table class="table table-bordered" style="color:#000">
                                     <tr>
-    <th colspan="6" style="color: orange;font-weight: bold;font-size: 20px;text-align: center;">Task Details </th>
+    <th colspan="6" style="color: orange;font-weight: bold;font-size: 20px;text-align: center;">Project Details </th>
   </tr>
   <tr>
     <th>Project Title</th>
     <td><?php  echo $row->TaskTitle;?></td>
-     <th>Project Priority</th>
+     <th>Services Needed</th>
     <td><?php  echo $row->TaskPriority;?></td>
   </tr>
   <tr>

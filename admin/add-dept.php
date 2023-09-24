@@ -32,7 +32,7 @@ echo "<script>window.location.href ='add-dept.php'</script>";
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM|| Add Role</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM|| Add Employee Role</title>
     
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -68,7 +68,7 @@ echo "<script>window.location.href ='add-dept.php'</script>";
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Add Role</h2>
+                              <h2>Add Employee Role</h2>
                            </div>
                         </div>
                      </div>
@@ -92,7 +92,7 @@ echo "<script>window.location.href ='add-dept.php'</script>";
                         <fieldset>
                             
                            <div class="field">
-                              <label class="label_field">Role Name</label>
+                              <label class="label_field">Role</label>
                               <input type="text" name="deptname" value="" class="form-control" required='true'>
                            </div>
                           

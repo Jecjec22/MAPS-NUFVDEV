@@ -142,20 +142,7 @@ foreach($result2 as $row2)
                               </select>
                            </div>
                            </div>
-                           <br>
-                          <div class="field">
-                              <div class="field">
-                              <label class="label_field">Project Priority</label>
-                              <select type="text" name="tpriority" value="" class="form-control" required='true'>
-                                 <option value="">Select Task Priority</option>
-                                 <option value="Normal">Normal</option>
-                                 <option value="Medium">Medium</option>
-                                 <option value="Urgent">Urgent</option>
-                                 <option value="Most Urgent">Most Urgent</option>
-                                
-                              </select>
-                           </div>
-                           </div>
+                        
 <br>
                            <div class="field">
                               <label class="label_field">Project Title</label>
@@ -165,6 +152,22 @@ foreach($result2 as $row2)
                            <div class="field">
                               <label class="label_field">Project Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
+                           </div>
+                           <br>
+                          <div class="field">
+                              <div class="field">
+                              <label class="label_field">Services Needed</label>
+                              <select type="text" name="tpriority" value="" class="form-control" required='true'>
+                                 <option value="">Select Services Needed</option>
+                                 <option value="Repair">Repair</option>
+                                 <option value="Maintenance">Maintenance</option>
+                                 <option value="Installation">Installation</option>
+                                 <option value="Repair and Maintenance">Repair and Maintenance</option>
+                                 <option value="Repair and Installation">Repair and Installation</option>
+                                 <option value="Maintenance and Installation">Maintenance and Installation</option>
+                                 <option value="Repair, Maintenance, and Installation">Repair, Maintenance, and Installation</option>
+                              </select>
+                           </div>
                            </div>
                            <br>
                             <div class="field">

@@ -86,7 +86,7 @@ foreach($results as $row)
   <tr>
     <th>Project Title</th>
     <td><?php  echo $row->TaskTitle;?></td>
-     <th>Project Priority</th>
+     <th>Services Needed</th>
     <td><?php  echo $row->TaskPriority;?></td>
   </tr>
   <tr>
