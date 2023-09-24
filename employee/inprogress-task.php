@@ -13,7 +13,7 @@ if (strlen($_SESSION['etmsempid']==0)) {
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View Inprogress Projects/title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View Inprogress Project</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
