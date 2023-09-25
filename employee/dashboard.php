@@ -47,7 +47,7 @@ if (strlen($_SESSION['etmsempid']==0)) {
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Dashboard</h2>
+                              <h2>Technician Dashboard</h2>
                            </div>
                         </div>
                      </div>
@@ -162,10 +162,7 @@ $alltasks=$query5->rowCount();
                    
                    
                  
-                  </div>
-                  <!-- footer -->
-                  <?php include_once('includes/footer.php');?>
-               </div>
+                  
                <!-- end dashboard inner -->
             </div>
          </div>
