@@ -63,6 +63,23 @@ echo "<script>alert('Invalid Details');</script>";
       <link rel="stylesheet" href="js/semantic.min.css" />
    
    </head>
+
+   
+   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">   <a id ="maps" href="../index.php"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" height="50" width="50"><g id="map-fold--navigation-map-maps-gps-travel-fold"><path id="Subtract" fill="#000" fill-rule="evenodd" d="m31.696428571428573 3.0892857142857144 -13.392857142857144 -2.678571428571429 0 46.5 13.392857142857144 2.678571428571429 0 -46.5Zm4.464285714285714 46.40714285714286 12.485714285714286 -3.1214285714285714A1.7857142857142858 1.7857142857142858 0 0 0 50 44.642857142857146V1.7857142857142858a1.7857142857142858 1.7857142857142858 0 0 0 -2.217857142857143 -1.7321428571428572l-11.621428571428572 2.9035714285714285 0 46.53928571428572ZM1.3535714285714286 3.625 13.839285714285715 0.5000000000000001l0 46.535714285714285 -11.621428571428572 2.907142857142857A1.7857142857142858 1.7857142857142858 0 0 1 0 48.214285714285715v-42.85714285714286a1.7857142857142858 1.7857142857142858 0 0 1 1.3535714285714286 -1.7321428571428572Z" clip-rule="evenodd" stroke-width="3.5714285714285716"></path></g></svg>
+       </a></span>
+      </a>
+
+      <!-- <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page"></a></li>	
+        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+      </ul> -->
+	
+    </header>
+
+
    <body class="inner_page login">
       <div class="full_container">
          <div class="container">
@@ -94,13 +111,30 @@ echo "<script>alert('Invalid Details');</script>";
                               <button class="main_bt" name="login" type="submit">Login</button>
                            </div>
                         </fieldset>
-                        <a class="forgot" href="../index.php">Home Page</a>
+                        <a class="forgot" href="../index.php">Home</a>
                      </form>
                   </div>
                </div>
             </div>
          </div>
       </div>
+
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary">© 2023 NUFVDEV Maps</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"> About</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+    </ul>
+  </footer>
+
       <!-- jQuery -->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>

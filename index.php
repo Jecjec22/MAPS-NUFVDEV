@@ -37,7 +37,7 @@ include('includes/dbconnection.php');
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="14" width="14"><g id="map-fold--navigation-map-maps-gps-travel-fold"><path id="Subtract" fill="#000" fill-rule="evenodd" d="m8.875 0.865 -3.75 -0.75 0 13.02 3.75 0.75 0 -13.02Zm1.25 12.994 3.496 -0.874A0.5 0.5 0 0 0 14 12.5V0.5a0.5 0.5 0 0 0 -0.621 -0.485l-3.254 0.813 0 13.031ZM0.379 1.015 3.875 0.14l0 13.03 -3.254 0.814A0.5 0.5 0 0 1 0 13.5v-12a0.5 0.5 0 0 1 0.379 -0.485Z" clip-rule="evenodd" stroke-width="1"></path></g></svg>
+        <span class="fs-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 50" height="50" width="50"><g id="map-fold--navigation-map-maps-gps-travel-fold"><path id="Subtract" fill="#000" fill-rule="evenodd" d="m31.696428571428573 3.0892857142857144 -13.392857142857144 -2.678571428571429 0 46.5 13.392857142857144 2.678571428571429 0 -46.5Zm4.464285714285714 46.40714285714286 12.485714285714286 -3.1214285714285714A1.7857142857142858 1.7857142857142858 0 0 0 50 44.642857142857146V1.7857142857142858a1.7857142857142858 1.7857142857142858 0 0 0 -2.217857142857143 -1.7321428571428572l-11.621428571428572 2.9035714285714285 0 46.53928571428572ZM1.3535714285714286 3.625 13.839285714285715 0.5000000000000001l0 46.535714285714285 -11.621428571428572 2.907142857142857A1.7857142857142858 1.7857142857142858 0 0 1 0 48.214285714285715v-42.85714285714286a1.7857142857142858 1.7857142857142858 0 0 1 1.3535714285714286 -1.7321428571428572Z" clip-rule="evenodd" stroke-width="3.5714285714285716"></path></g></svg>
 		MAPS</span>
       </a>
 
@@ -54,7 +54,7 @@ include('includes/dbconnection.php');
   <div class="card" style="border-radius: 10px; box-shadow: 0 4px 20px 1px rgb(0 0 0 / 6%), 0 1px 4px rgb(0 0 0 / 8%);">
     <div class="row g-0">
       <div class="col-md-6 col-lg-5 d-none d-md-block">
-        <img src="https://images.unsplash.com/photo-1586076100131-32505c71d0d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80 alt="login form" class="img-fluid" style="border-radius: 10px 0 0 10px; background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+        <img src="https://images.unsplash.com/photo-1586076100131-32505c71d0d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="login form" class="img-fluid" style="border-radius: 10px 0 0 10px; background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
       </div>
       <div class="col-md-6 col-lg-7 d-flex align-items-center">
         <div class="card-body p-4 p-lg-5 text-black">
