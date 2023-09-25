@@ -8,7 +8,9 @@ include('includes/dbconnection.php');
 <html>
 
 <head>
-	<title>MANPOWER ALLOCATION AND PLANNING SYSTEM||Home Page</title>
+
+
+	<title>MAPS</title>
 	<!--/tags -->
 	
 	<script type="application/x-javascript">
@@ -20,136 +22,105 @@ include('includes/dbconnection.php');
 			window.scrollTo(0, 1);
 		}
 	</script>
-	<!--//tags -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
-	<link href="css/font-awesome.css" rel="stylesheet">
-	<!-- //for bootstrap working -->
-	<link href="//fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
-	    rel='stylesheet' type='text/css'>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet"  type="text/css" href="./css/landingpage.css" >	
+
 </head>
-
 <body>
-	<!-- header -->
-	<?php include_once('includes/header.php');?>
-	<!-- banner -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Improving workplace <span>Productivity.</span></h3>
-						<p>Hire. Train. Retain.</p>
-						<div class="agileits-button top_ban_agile">
-							<a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="item item2">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Inspiring leadership <span>innovation.</span></h3>
-						<p>Hire. Train. Retain.</p>
-						<div class="agileits-button top_ban_agile">
-							<a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="item item3">
-				<div class="container">
-					<div class="carousel-caption">
-						<h3>Improving workplace <span>Productivity.</span></h3>
-						<p>Hire. Train. Retain.</p>
-						<div class="agileits-button top_ban_agile">
-							<a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="item item4">
-				<div class="container">
-					<div class="carousel-caption">
 
-						<h3>Inspiring leadership <span>innovation.</span></h3>
-						<p>Hire. Train. Retain.</p>
-						<div class="agileits-button top_ban_agile">
-							<a class="btn btn-primary btn-lg scroll" href="#welcome" role="button">Read More »</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="fa fa-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="fa fa-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-		<!-- The Modal -->
-	</div>
-	<!--//banner -->
 
-	<!--/search_form -->
+<div>
+<section class = "gradient-background">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="14" width="14"><g id="map-fold--navigation-map-maps-gps-travel-fold"><path id="Subtract" fill="#000" fill-rule="evenodd" d="m8.875 0.865 -3.75 -0.75 0 13.02 3.75 0.75 0 -13.02Zm1.25 12.994 3.496 -0.874A0.5 0.5 0 0 0 14 12.5V0.5a0.5 0.5 0 0 0 -0.621 -0.485l-3.254 0.813 0 13.031ZM0.379 1.015 3.875 0.14l0 13.03 -3.254 0.814A0.5 0.5 0 0 1 0 13.5v-12a0.5 0.5 0 0 1 0.379 -0.485Z" clip-rule="evenodd" stroke-width="1"></path></g></svg>
+		MAPS</span>
+      </a>
+
+      <!-- <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page"></a></li>	
+        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+      </ul> -->
 	
-	<!--//search_form -->
-	<div class="banner-bottom">
-		<div class="container">
-			<div class="tittle_head_w3ls">
-				<h3 class="tittle">About Us</h3>
-			</div>
-			<div class="inner_sec_grids_info_w3ls">
-				<?php
-$sql="SELECT * from tblpage where PageType='aboutus'";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+    </header>
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-				<div class="col-md-6 banner_bottom_left">
-					<h4>Employment opportunities for <span>Professionals</span></h4>
-					<p><?php  echo htmlentities($row->PageDescription);?></p><?php $cnt=$cnt+1;}} ?>
-			
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 banner_bottom_right">
-					<div class="agileits_w3layouts_banner_bottom_grid">
-						<img src="images/ab.png" alt=" " class="img-responsive" />
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
 
-		</div>
-	</div>
-	<!-- //banner-bottom -->
-	<div class="team_work_agile">
-		<h4>Whether we play a large or small role, by working together we achieve our objectives.</h4>
-	</div>
 
-	<?php include_once('includes/footer.php');?>
+  <div class="container">
+  <div class="card" style="border-radius: 10px; box-shadow: 0 4px 20px 1px rgb(0 0 0 / 6%), 0 1px 4px rgb(0 0 0 / 8%);">
+    <div class="row g-0">
+      <div class="col-md-6 col-lg-5 d-none d-md-block">
+        <img src="https://images.unsplash.com/photo-1586076100131-32505c71d0d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80 alt="login form" class="img-fluid" style="border-radius: 10px 0 0 10px; background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+      </div>
+      <div class="col-md-6 col-lg-7 d-flex align-items-center">
+        <div class="card-body p-4 p-lg-5 text-black">
+          <div class="container">
+            <section class="white-background">
+              <div class="container">
+                <div class="px-4 py-5 my-5 text-center">
+                  <h1 class="text-body-emphasis">Manpower Allocation and Planning System</h1>
+                  <p class="col-lg-8 mx-auto fs-5 text-muted">Traves Maintenance and Services Incorporated</p>
+                  <h4 class="display-10 fw-bold text-body-emphasis">Sign in as:</h4>
+                  <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4"></p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                      <button type="button" class="btn btn-light btn-lg px-4 me-md-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                          <g id="user-single-neutral-male--close-geometric-human-person-single-up-user-male">
+                            <path id="Union" fill="#000" fill-rule="evenodd" d="M18 1.5H6v5a6 6 0 1 0 12 0v-5Zm-6 13c-3.608 0-7.007 0.911-9.976 2.516L1.5 17.3v5.2h21v-5.2l-0.524 -0.284A20.911 20.911 0 0 0 12 14.5Z" clip-rule="evenodd" stroke-width="1"></path>
+                          </g>
+                        </svg>
+                        <a href="admin/login.php" class="effect-3">Supervisor</a>
+                      </button>
+                      <button type="button" class="btn btn-light btn-lg px-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                          <g id="user-single-neutral-male--close-geometric-human-person-single-up-user-male">
+                            <path id="Union" fill="#000" fill-rule="evenodd" d="M18 1.5H6v5a6 6 0 1 0 12 0v-5Zm-6 13c-3.608 0-7.007 0.911-9.976 2.516L1.5 17.3v5.2h21v-5.2l-0.524 -0.284A20.911 20.911 0 0 0 12 14.5Z" clip-rule="evenodd" stroke-width="1"></path>
+                          </g>
+                        </svg>
+                        <a href="employee/login.php" class="effect-3">Technician</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	<!-- js -->
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+ 
+  </div>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary">© 2023 NUFVDEV Maps</p>
 
-	<script type="text/javascript" src="js/bootstrap.js"></script>
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"> About</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"></a></li>
+    </ul>
+  </footer>
+</div>
+
+</section>
+</div>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 </html>
