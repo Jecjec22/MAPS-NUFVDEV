@@ -78,7 +78,7 @@ echo "<script>alert('Invalid Details');</script>";
                <div class="login_section">
                   <div class="logo_login">
                      <div class="center">
-                        <h3 style="color: white;">MANPOWER ALLOCATION AND PLANNING SYSTEM</h3>
+                        <h3 style="color: white;">Sign in to MAPS</h3>
                      </div>
                   </div>
                   <div class="login_form">
@@ -92,7 +92,7 @@ echo "<script>alert('Invalid Details');</script>";
                               <label class="label_field">Password</label>
                               <input type="password" class="form-control" placeholder="enter your password" name="password" required="true">
                            </div>
-                          <a class="forgot" href="forgot-password.php">Forgotten Password?</a>
+                          <a class="forgot" href="forgot-password.php">Forgot Password?</a>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
                               <button class="main_bt" name="login" type="submit">Login</button>

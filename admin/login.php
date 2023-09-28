@@ -87,7 +87,7 @@ echo "<script>alert('Invalid Details');</script>";
                <div class="login_section">
                   <div class="logo_login">
                      <div class="center">
-                        <h3 style="color: white;">MANPOWER ALLOCATION AND PLANNING SYSTEM</h3>
+                        <h3 style="color: white;">Sign in to Maps</h3>
                      </div>
                   </div>
                   <div class="login_form">
@@ -104,7 +104,7 @@ echo "<script>alert('Invalid Details');</script>";
                            <div class="field">
                               <label class="label_field hidden">hidden label</label>
                               <label class="form-check-label"><input class="form-check-input" id="remember" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> type="checkbox"/> Remember Me</label>
-                              <a class="forgot" href="forgot-password.php">Forgotten Password?</a>
+                              <a class="forgot" href="forgot-password.php">Forgot Password?</a>
                            </div>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
