@@ -12,15 +12,25 @@ if (strlen($_SESSION['etmsaid']==0)) {
  $emplist=$_POST['emplist'];
  $tpriority=$_POST['tpriority'];
  $ttitle=$_POST['ttitle'];
+ $ClientName=$_POST['ClientName'];
+ $ProjectLoc=$_POST['ProjectLoc'];
+ $TeamSize=$_POST['TeamSize'];
  $tdesc=$_POST['tdesc'];
+ $StartDate=$_POST['StartDate'];
  $tedate=$_POST['tedate'];
-$sql="insert into tbltask(DeptID,AssignTaskto,TaskPriority,TaskTitle,TaskDescription,TaskEnddate)values(:deptid,:emplist,:tpriority,:ttitle,:tdesc,:tedate)";
+ $sql = "INSERT INTO tbltask (DeptID, AssignTaskto, TaskPriority, TaskTitle, TaskDescription, TaskEnddate, ClientName, ProjectLoc, TeamSize, StartDate)
+ VALUES (:deptid, :emplist, :tpriority, :ttitle, :tdesc, :tedate, :ClientName, :ProjectLoc, :TeamSize, :StartDate)";
+
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptid',$deptid,PDO::PARAM_STR);
 $query->bindParam(':emplist',$emplist,PDO::PARAM_STR);
 $query->bindParam(':tpriority',$tpriority,PDO::PARAM_STR);
 $query->bindParam(':ttitle',$ttitle,PDO::PARAM_STR);
+$query->bindParam(':ClientName',$ClientName,PDO::PARAM_STR);
+$query->bindParam(':ProjectLoc',$ProjectLoc,PDO::PARAM_STR);
+$query->bindParam(':TeamSize',$TeamSize,PDO::PARAM_STR);
 $query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
+$query->bindParam(':StartDate',$StartDate,PDO::PARAM_STR);
 $query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
 
  $query->execute();
@@ -136,7 +146,7 @@ foreach($result2 as $row2)
                            <br>
                            <div class="field">
                               <div class="field">
-                              <label class="label_field">Employee List</label>
+                              <label class="label_field">Choose Employee/s</label>
                               <select type="text" name="emplist" id="emplist" value="" class="form-control" required='true'>
 
                               </select>
@@ -149,6 +159,21 @@ foreach($result2 as $row2)
                               <input type="text" name="ttitle" value="" class="form-control" required='true'>
                            </div>
                            <br>
+                           <div class="field">
+   <label class="label_field">Client Name</label>
+   <input type="text" name="ClientName" value="" class="form-control" required='true'>
+</div>
+<br>
+<div class="field">
+   <label class="label_field">Project Location</label>
+   <input type="text" name="ProjectLoc" value="" class="form-control" required='true'>
+</div>
+<br>
+<div class="field">
+   <label class="label_field">Team Size</label>
+   <input type="text" name="TeamSize" value="" class="form-control" required='true'>
+</div>
+<br>
                            <div class="field">
                               <label class="label_field">Project Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
@@ -169,6 +194,11 @@ foreach($result2 as $row2)
                               </select>
                            </div>
                            </div>
+                           <br>
+                           <div class="field">
+   <label class="label_field">Project Start Date</label>
+   <input type="date" name="StartDate" value="" class="form-control" required='true'>
+</div>
                            <br>
                             <div class="field">
                               <label class="label_field">Project End Date</label>

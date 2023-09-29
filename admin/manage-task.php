@@ -83,17 +83,18 @@ $query->execute();
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
-                                             <th>Role</th>
+                                             <th>Project Name</th>
+                                             <th>Project of</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>
-                                             <th>End Date</th>
+                                             <th>Start Date</th>
+                                             <th>Deadline</th>
                                              <th>Action</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           <?php
-$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto";
+$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbltask.StartDate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -110,6 +111,7 @@ foreach($results as $row)
                                              <td><?php  echo htmlentities($row->DepartmentName);?></td>
                                              <td><?php  echo htmlentities($row->EmpName);?>(<?php  echo htmlentities($row->EmpId);?>)</td>
                                              <td><?php  echo htmlentities($row->TaskAssigndate);?></td>
+                                             <td><?php  echo htmlentities($row->StartDate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>
                                              <td><a href="edit-task.php?editid=<?php echo htmlentities ($row->tid);?>" class="btn btn-primary">Edit</a>
                                                  <a href="manage-task.php?delid=<?php echo ($row->tid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger">Delete</a></td>
