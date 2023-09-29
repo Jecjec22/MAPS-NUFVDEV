@@ -84,6 +84,14 @@ include('includes/dbconnection.php');
                         </svg>
                         <a href="employee/login.php" class="effect-3">Technician</a>
                       </button>
+                      <button type="button" class="btn btn-light btn-lg px-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24">
+                          <g id="user-single-neutral-male--close-geometric-human-person-single-up-user-male">
+                            <path id="Union" fill="#000" fill-rule="evenodd" d="M18 1.5H6v5a6 6 0 1 0 12 0v-5Zm-6 13c-3.608 0-7.007 0.911-9.976 2.516L1.5 17.3v5.2h21v-5.2l-0.524 -0.284A20.911 20.911 0 0 0 12 14.5Z" clip-rule="evenodd" stroke-width="1"></path>
+                          </g>
+                        </svg>
+                        <a href="coordinator/login.php" class="effect-3">Coordinator</a>
+                      </button>
                     </div>
                   </div>
                 </div>
