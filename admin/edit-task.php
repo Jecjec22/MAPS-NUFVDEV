@@ -131,10 +131,10 @@ if($query->rowCount() > 0)
    tbltask.TaskDescription,
    tbltask.TaskEnddate,
    tbltask.TaskAssigndate,
-   tbltask.ClientName,   -- Add ClientName
-   tbltask.ProjectLoc,   -- Add ProjectLoc
-   tbltask.TeamSize,     -- Add TeamSize
-   tbltask.StartDate,    -- Add StartDate
+   tbltask.ClientName,   
+   tbltask.ProjectLoc,   
+   tbltask.TeamSize,  
+   tbltask.StartDate,    
    tbltask.TaskTitle,
    tbldepartment.DepartmentName,
    tbldepartment.ID as did,
@@ -216,19 +216,19 @@ foreach($result2 as $row3)
                               <input type="text" name="ttitle" value="<?php echo htmlentities($row->TaskTitle);?>" class="form-control" required='true'>
                            </div>
                            <br>
-                           <div class="field">
+                          <div class="field">
                               <label class="label_field">Client Name</label>
-                              <input type="text" name="ClientName" value="<?php echo htmlentities($row->ClientName);?>" class="form-control" required='true'>
+                              <textarea type="text" name="ClientName" value="" class="form-control" required='true'><?php echo htmlentities($row->ClientName);?></textarea>
                            </div>
                            <br>
-                           <div class="field">
+                             <div class="field">
                               <label class="label_field">Project Location</label>
-                              <input type="text" name="ProjectLoc" value="<?php echo htmlentities($row->ProjectLoc);?>" class="form-control" required='true'>
+                              <textarea type="text" name="ProjectLoc" value="" class="form-control" required='true'><?php echo htmlentities($row->ProjectLoc);?></textarea>
                            </div>
                            <br>
                            <div class="field">
                               <label class="label_field">Team Size</label>
-                              <input type="text" name="TeamSize" value="<?php echo htmlentities($row->TeamSize);?>" class="form-control" required='true'>
+                              <textarea type="text" name="TeamSize" value="" class="form-control" required='true'><?php echo htmlentities($row->TeamSize);?></textarea>
                            </div>
                            <br>
                            <div class="field">
