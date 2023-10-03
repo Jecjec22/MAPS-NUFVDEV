@@ -218,7 +218,10 @@ if ($status=="" || $status=="Inprogress"){
 ?> 
 <p align="center"  style="padding-top: 20px">                            
  <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Update</button></p>  
-
+ <div class="modal-footer">
+    <a class="btn btn-primary" href="http://localhost/employee/service-report.php">Upload Service Report</a>
+    
+</div>
 <?php } ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -250,6 +253,8 @@ if ($status=="" || $status=="Inprogress"){
      <option value="Completed">Completed</option>
    </select></td>
   </tr>
+   <tr>
+                                             
 </table>
 </div>
 <div class="modal-footer">
