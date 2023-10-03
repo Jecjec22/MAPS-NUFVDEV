@@ -25,7 +25,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
     <link rel="stylesheet" href="css/custom.css" />
-    <link rel="stylesheet" href="js/semantic.min.css" />
+    <link rel="stylesheet" href="css/semantic.min.css" />
 </head>
 <body class="inner_page general_elements">
 <div class="full_container">
@@ -65,8 +65,8 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                                         <div class="image-gallery">
                                                             <?php
                                                             foreach ($result as $row) {
-                                                               $imagePath = 'employee/images/' . $row['ServiceReport'];
-                                                               echo '<a href="' . $imagePath . '" target="_blank">' . $row['ServiceReport'] . '</a><br>';
+                                                                $imagePath = 'images/' . $row['ServiceReport'];
+                                                                echo '<a href="' . $imagePath . '" target="_blank">' . $row['ServiceReport'] . '</a><br>';
                                                             }
                                                             ?>
                                                         </div>
@@ -96,7 +96,6 @@ if (strlen($_SESSION['etmsaid']) == 0) {
 <script src="js/bootstrap-select.js"></script>
 <script src="js/owl.carousel.js"></script>
 <script src="js/Chart.min.js"></script>
-<script src="js/Chart.bundle.min.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/analyser.js"></script>
 <script src="js/perfect-scrollbar.min.js"></script>

@@ -25,7 +25,7 @@ $query->execute();
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Project</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Service</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -62,7 +62,7 @@ $query->execute();
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Manage Project</h2>
+                              <h2>Manage Service</h2>
                            </div>
                         </div>
                      </div>
@@ -74,7 +74,7 @@ $query->execute();
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Manage Project</h2>
+                                    <h2>Manage Service</h2>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -83,8 +83,8 @@ $query->execute();
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Name</th>
-                                             <th>Project of</th>
+                                             <th>Service Name</th>
+                                             <th>Service of</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>
                                              <th>Start Date</th>

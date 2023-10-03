@@ -67,7 +67,7 @@ $query1 = $dbh -> prepare($sql1);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totdept=$query1->rowCount();
-?><a href="completed-task.php" >
+?><a href="betweendates-task-report.php" >
                                     <p class="total_no"><?php echo htmlentities($totdept);?></p>
                                     <p class="head_couter" style="color:#fff !important">Total Service Reports</p>
                                  </a>
@@ -116,7 +116,7 @@ $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $inprotask=$query3->rowCount();
 ?><a href="completed-task.php">
                                    <p class="total_no"><?php echo htmlentities($inprotask);?></p>
-                                    <p class="head_couter" style="color:#fff">Completed Project</p>
+                                    <p class="head_couter" style="color:#fff">Completed Service/p>
                                     </a>
                                  </div>
                               </div>
@@ -139,7 +139,7 @@ $results4=$query4->fetchAll(PDO::FETCH_OBJ);
 $comptask=$query4->rowCount();
 ?><a href="inprogress-task.php">
                                    <p class="total_no"><?php echo htmlentities($comptask);?></p>
-                                    <p class="head_couter" style="color:#fff">Inprogress Project</p>
+                                    <p class="head_couter" style="color:#fff">Inprogress Service</p>
                                  </a>
                                  </div>
                               </div>
@@ -164,7 +164,7 @@ $results5=$query5->fetchAll(PDO::FETCH_OBJ);
 $alltasks=$query5->rowCount();
 ?><a href="manage-task.php">
                                     <p class="total_no"><?php echo htmlentities($alltasks);?></p>
-                                    <p class="head_couter" style="color:#000">All Project </p>
+                                    <p class="head_couter" style="color:#000">All Services </p>
                                  </a>
                                  </div>
                               </div>

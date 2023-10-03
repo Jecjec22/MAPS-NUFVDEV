@@ -13,7 +13,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View Inprogress Project</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View Inprogress Service</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -50,7 +50,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>View Inprogress Project</h2>
+                              <h2>View Inprogress Service</h2>
                            </div>
                         </div>
                      </div>
@@ -71,7 +71,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
+                                             <th>Service Title</th>
                                              <th>Role</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>

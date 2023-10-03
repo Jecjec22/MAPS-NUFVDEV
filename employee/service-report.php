@@ -12,16 +12,11 @@ $msg = $error = '';
 if (isset($_POST['uploadReport'])) {
     $reportImage = $_FILES['reportImage']['name'];
     $tempReportImage = $_FILES['reportImage']['tmp_name'];
-    $folder = "employee/images/";
-
-    // Create the directory if it doesn't exist
-    if (!file_exists($folder)) {
-        mkdir($folder, 0777, true); // Create the directory recursively
-    }
+    $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/admin/images/";
 
     if (!empty($reportImage)) {
-        if (move_uploaded_file($tempReportImage, $folder . $reportImage)) {
-            // File successfully moved to the employee/images folder
+        if (move_uploaded_file($tempReportImage, $targetDirectory . $reportImage)) {
+            // File successfully moved to the specified directory
             $sql = "INSERT INTO tblreport (ServiceReport) VALUES (:reportImage)";
             $query = $dbh->prepare($sql);
             $query->bindParam(':reportImage', $reportImage, PDO::PARAM_STR);
@@ -32,7 +27,7 @@ if (isset($_POST['uploadReport'])) {
                 $error = "Error inserting data into the database.";
             }
         } else {
-            $error = "Failed to move the file to the employee/images folder.";
+            $error = "Failed to move the file to the specified directory.";
         }
     } else {
         $error = "Please select a report image to upload.";

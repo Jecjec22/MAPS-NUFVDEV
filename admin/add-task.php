@@ -52,7 +52,7 @@ echo "<script>window.location.href ='add-task.php'</script>";
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Add PROJECT</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Add Service</title>
     
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -101,7 +101,7 @@ $("#emplist").html(data);
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Add Project</h2>
+                              <h2>Add Service</h2>
                            </div>
                         </div>
                      </div>
@@ -112,7 +112,7 @@ $("#emplist").html(data);
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Add Project</h2>
+                                    <h2>Add Service</h2>
                                  </div>
                               </div>
                               <div class="full progress_bar_inner">
@@ -155,7 +155,7 @@ foreach($result2 as $row2)
                         
 <br>
                            <div class="field">
-                              <label class="label_field">Project Title</label>
+                              <label class="label_field">Service Title</label>
                               <input type="text" name="ttitle" value="" class="form-control" required='true'>
                            </div>
                            <br>
@@ -165,7 +165,7 @@ foreach($result2 as $row2)
 </div>
 <br>
 <div class="field">
-   <label class="label_field">Project Location</label>
+   <label class="label_field">Service Location</label>
    <input type="text" name="ProjectLoc" value="" class="form-control" required='true'>
 </div>
 <br>
@@ -175,7 +175,7 @@ foreach($result2 as $row2)
 </div>
 <br>
                            <div class="field">
-                              <label class="label_field">Project Description</label>
+                              <label class="label_field">Service Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
                            </div>
                            <br>
@@ -196,12 +196,12 @@ foreach($result2 as $row2)
                            </div>
                            <br>
                            <div class="field">
-   <label class="label_field">Project Start Date</label>
+   <label class="label_field">Service Start Date</label>
    <input type="date" name="StartDate" value="" class="form-control" required='true'>
 </div>
                            <br>
                             <div class="field">
-                              <label class="label_field">Project End Date</label>
+                              <label class="label_field">Service End Date</label>
                               <input type="date" name="tedate" value="" class="form-control" required='true'>
                            </div>
                            <br>

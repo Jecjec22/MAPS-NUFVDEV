@@ -35,19 +35,19 @@
       <ul class="list-unstyled components">
          <li><a href="dashboard.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
          <li class="active">
-            <a href="#dashboard2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-files-o orange_color"></i> <span>Project</span></a>
+            <a href="#dashboard2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-files-o orange_color"></i> <span>Service</span></a>
             <ul class="collapse list-unstyled" id="dashboard2">
                <li>
-                  <a href="new-task.php">> <span>New Project</span></a>
+                  <a href="new-task.php">> <span>New Service</span></a>
                </li>
                <li>
-                  <a href="inprogress-task.php">> <span>Inprogress Project</span></a>
+                  <a href="inprogress-task.php">> <span>Inprogress Service</span></a>
                </li>
                <li>
-                  <a href="completed-task.php">> <span>Completed Project</span></a>
+                  <a href="completed-task.php">> <span>Completed Service</span></a>
                </li>
                <li>
-                  <a href="all-task.php">> <span>All Projects</span></a>
+                  <a href="all-task.php">> <span>All Services</span></a>
                </li>
             </ul>
          </li>

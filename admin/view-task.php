@@ -12,7 +12,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View New Project</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View New Service</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -49,7 +49,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Project Details</h2>
+                              <h2>Service Details</h2>
                            </div>
                         </div>
                      </div>
@@ -61,7 +61,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Project Details</h2>
+                                    <h2>Service Details</h2>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -81,25 +81,25 @@ foreach($results as $row)
 {               ?> 
                                      <table class="table table-bordered" style="color:#000">
                                     <tr>
-    <th colspan="6" style="color: orange;font-weight: bold;font-size: 20px;text-align: center;">Project Details </th>
+    <th colspan="6" style="color: orange;font-weight: bold;font-size: 20px;text-align: center;">Service Details </th>
   </tr>
   <tr>
-    <th>Project Title</th>
+    <th>Service Title</th>
     <td><?php  echo $row->TaskTitle;?></td>
      <th>Services Needed</th>
     <td><?php  echo $row->TaskPriority;?></td>
   </tr>
   <tr>
-    <th>Project Description</th>
+    <th>Service Description</th>
     <td colspan="3"><?php  echo $row->TaskDescription;?></td>
  </tr>
  <tr>
-     <th>Project Assign Date</th>
+     <th>Service Assign Date</th>
     <td colspan="3"><?php  echo $row->TaskAssigndate;?></td>
   </tr>
 
  <tr>
-     <th>Project Finish Date</th>
+     <th>Service Finish Date</th>
     <td colspan="3"><?php  echo $row->TaskEnddate;?></td>
   </tr>
 
@@ -157,7 +157,7 @@ $cnt=1;
  ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="color: #000;border-collapse: collapse; border-spacing: 0; width: 100%;">
   <tr align="center">
-  <th colspan="5" style="color: black;">Project History</th>
+  <th colspan="5" style="color: black;">Service History</th>
 
   </tr>
   <tr>
@@ -176,7 +176,7 @@ foreach($results as $row)
   <td><?php  echo $row->Status;
 ?></td> 
 <td>
-<span class="skill" style="width:90%;">Project Progress<span class="info_valume"><?php  echo $row->WorkCompleted;?>%</span> </span>
+<span class="skill" style="width:90%;">Service Progress<span class="info_valume"><?php  echo $row->WorkCompleted;?>%</span> </span>
 
    <div class="progress skill-bar ">
                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" aria-valuenow="<?php  echo $row->WorkCompleted;?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php  echo $row->WorkCompleted;?>%;"></div>
