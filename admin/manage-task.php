@@ -25,7 +25,7 @@ $query->execute();
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Service</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Project</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -62,7 +62,7 @@ $query->execute();
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Manage Service</h2>
+                              <h2>Assign Technician</h2>
                            </div>
                         </div>
                      </div>
@@ -74,7 +74,7 @@ $query->execute();
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Manage Service</h2>
+                                    <h2>Assign Technician</h2>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -83,21 +83,25 @@ $query->execute();
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Service Name</th>
-                                             <th>Service of</th>
+                                             <th>Project Title</th>
+                                             <th>Role</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>
-                                             <th>Start Date</th>
-                                             <th>Deadline</th>
+                                             <th>End Date</th>
                                              <th>Action</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           <?php
-$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbltask.StartDate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto";
-$query = $dbh -> prepare($sql);
+$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId 
+FROM tbltask 
+JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID 
+LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto";
+
+$query = $dbh->prepare($sql);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+
 
 $cnt=1;
 if($query->rowCount() > 0)
@@ -111,9 +115,8 @@ foreach($results as $row)
                                              <td><?php  echo htmlentities($row->DepartmentName);?></td>
                                              <td><?php  echo htmlentities($row->EmpName);?>(<?php  echo htmlentities($row->EmpId);?>)</td>
                                              <td><?php  echo htmlentities($row->TaskAssigndate);?></td>
-                                             <td><?php  echo htmlentities($row->StartDate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>
-                                             <td><a href="edit-task.php?editid=<?php echo htmlentities ($row->tid);?>" class="btn btn-primary">Edit</a>
+                                             <td><a href="edit-task.php?editid=<?php echo htmlentities ($row->tid);?>" class="btn btn-primary">Assign</a>
                                                  <a href="manage-task.php?delid=<?php echo ($row->tid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger">Delete</a></td>
                                           </tr><?php $cnt=$cnt+1;}} ?>
                                        </tbody>

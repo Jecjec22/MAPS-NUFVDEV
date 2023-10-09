@@ -12,25 +12,15 @@ if (strlen($_SESSION['etmsaid']==0)) {
  $emplist=$_POST['emplist'];
  $tpriority=$_POST['tpriority'];
  $ttitle=$_POST['ttitle'];
- $ClientName=$_POST['ClientName'];
- $ProjectLoc=$_POST['ProjectLoc'];
- $TeamSize=$_POST['TeamSize'];
  $tdesc=$_POST['tdesc'];
- $StartDate=$_POST['StartDate'];
  $tedate=$_POST['tedate'];
- $sql = "INSERT INTO tbltask (DeptID, AssignTaskto, TaskPriority, TaskTitle, TaskDescription, TaskEnddate, ClientName, ProjectLoc, TeamSize, StartDate)
- VALUES (:deptid, :emplist, :tpriority, :ttitle, :tdesc, :tedate, :ClientName, :ProjectLoc, :TeamSize, :StartDate)";
-
+$sql="insert into tbltask(DeptID,AssignTaskto,TaskPriority,TaskTitle,TaskDescription,TaskEnddate)values(:deptid,:emplist,:tpriority,:ttitle,:tdesc,:tedate)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptid',$deptid,PDO::PARAM_STR);
 $query->bindParam(':emplist',$emplist,PDO::PARAM_STR);
 $query->bindParam(':tpriority',$tpriority,PDO::PARAM_STR);
 $query->bindParam(':ttitle',$ttitle,PDO::PARAM_STR);
-$query->bindParam(':ClientName',$ClientName,PDO::PARAM_STR);
-$query->bindParam(':ProjectLoc',$ProjectLoc,PDO::PARAM_STR);
-$query->bindParam(':TeamSize',$TeamSize,PDO::PARAM_STR);
 $query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
-$query->bindParam(':StartDate',$StartDate,PDO::PARAM_STR);
 $query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
 
  $query->execute();
@@ -52,7 +42,7 @@ echo "<script>window.location.href ='add-task.php'</script>";
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Add Service</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Add PROJECT</title>
     
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -101,7 +91,7 @@ $("#emplist").html(data);
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Add Service</h2>
+                              <h2>Add Project</h2>
                            </div>
                         </div>
                      </div>
@@ -112,7 +102,7 @@ $("#emplist").html(data);
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Add Service</h2>
+                                    <h2>Add Project</h2>
                                  </div>
                               </div>
                               <div class="full progress_bar_inner">
@@ -146,7 +136,7 @@ foreach($result2 as $row2)
                            <br>
                            <div class="field">
                               <div class="field">
-                              <label class="label_field">Choose Employee/s</label>
+                              <label class="label_field">Employee List</label>
                               <select type="text" name="emplist" id="emplist" value="" class="form-control" required='true'>
 
                               </select>
@@ -155,27 +145,12 @@ foreach($result2 as $row2)
                         
 <br>
                            <div class="field">
-                              <label class="label_field">Service Title</label>
+                              <label class="label_field">Project Title</label>
                               <input type="text" name="ttitle" value="" class="form-control" required='true'>
                            </div>
                            <br>
                            <div class="field">
-   <label class="label_field">Client Name</label>
-   <input type="text" name="ClientName" value="" class="form-control" required='true'>
-</div>
-<br>
-<div class="field">
-   <label class="label_field">Service Location</label>
-   <input type="text" name="ProjectLoc" value="" class="form-control" required='true'>
-</div>
-<br>
-<div class="field">
-   <label class="label_field">Team Size</label>
-   <input type="text" name="TeamSize" value="" class="form-control" required='true'>
-</div>
-<br>
-                           <div class="field">
-                              <label class="label_field">Service Description</label>
+                              <label class="label_field">Project Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
                            </div>
                            <br>
@@ -195,13 +170,8 @@ foreach($result2 as $row2)
                            </div>
                            </div>
                            <br>
-                           <div class="field">
-   <label class="label_field">Service Start Date</label>
-   <input type="date" name="StartDate" value="" class="form-control" required='true'>
-</div>
-                           <br>
                             <div class="field">
-                              <label class="label_field">Service End Date</label>
+                              <label class="label_field">Project End Date</label>
                               <input type="date" name="tedate" value="" class="form-control" required='true'>
                            </div>
                            <br>

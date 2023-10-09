@@ -8,55 +8,31 @@ if (strlen($_SESSION['etmsaid']==0)) {
     if(isset($_POST['submit']))
   {
 
-   $deptid = $_POST['deptid'];
-   $emplist = $_POST['emplist'];
-   $tpriority = $_POST['tpriority'];
-   $ttitle = $_POST['ttitle'];
-   $ClientName = $_POST['ClientName'];
-   $ProjectLoc = $_POST['ProjectLoc'];
-   $TeamSize = $_POST['TeamSize'];
-   $tdesc = $_POST['tdesc'];
-   $StartDate = $_POST['StartDate'];
-   $tedate = $_POST['tedate'];
-   $eid = $_GET['editid'];
-   
-   $sql = "UPDATE tbltask 
-           SET DeptID=:deptid, 
-               AssignTaskto=:emplist, 
-               TaskPriority=:tpriority, 
-               TaskTitle=:ttitle, 
-               TaskDescription=:tdesc, 
-               TaskEnddate=:tedate, 
-               ClientName=:ClientName, 
-               ProjectLoc=:ProjectLoc, 
-               TeamSize=:TeamSize, 
-               StartDate=:StartDate 
-           WHERE ID=:eid";
-   
-   $query = $dbh->prepare($sql);
-   $query->bindParam(':deptid', $deptid, PDO::PARAM_STR);
-   $query->bindParam(':emplist', $emplist, PDO::PARAM_STR);
-   $query->bindParam(':tpriority', $tpriority, PDO::PARAM_STR);
-   $query->bindParam(':ttitle', $ttitle, PDO::PARAM_STR);
-   $query->bindParam(':ClientName', $ClientName, PDO::PARAM_STR);
-   $query->bindParam(':ProjectLoc', $ProjectLoc, PDO::PARAM_STR);
-   $query->bindParam(':TeamSize', $TeamSize, PDO::PARAM_STR);
-   $query->bindParam(':tdesc', $tdesc, PDO::PARAM_STR);
-   $query->bindParam(':StartDate', $StartDate, PDO::PARAM_STR);
-   $query->bindParam(':tedate', $tedate, PDO::PARAM_STR);
-   $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-   
-   $query->execute();
-   
-   echo '<script>alert("Service detail has been updated")</script>';
-   
+ $deptid=$_POST['deptid'];
+ $emplist=$_POST['emplist'];
+ $tpriority=$_POST['tpriority'];
+ $ttitle=$_POST['ttitle'];
+ $tdesc=$_POST['tdesc'];
+ $tedate=$_POST['tedate'];
+ $eid=$_GET['editid'];
+$sql="update tbltask set DeptID=:deptid,AssignTaskto=:emplist,TaskPriority=:tpriority,TaskTitle=:ttitle,TaskDescription=:tdesc,TaskEnddate=:tedate where ID=:eid";
+$query=$dbh->prepare($sql);
+$query->bindParam(':deptid',$deptid,PDO::PARAM_STR);
+$query->bindParam(':emplist',$emplist,PDO::PARAM_STR);
+$query->bindParam(':tpriority',$tpriority,PDO::PARAM_STR);
+$query->bindParam(':ttitle',$ttitle,PDO::PARAM_STR);
+$query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
+$query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
+$query->bindParam(':eid',$eid,PDO::PARAM_STR);
+ $query->execute();
+  echo '<script>alert("Project detail has been updated")</script>';
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Update Service</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Update PROJECT</title>
     
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -92,7 +68,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Update Service</h2>
+                              <h2>Update Project</h2>
                            </div>
                         </div>
                      </div>
@@ -103,7 +79,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Update Service</h2>
+                                    <h2>Update Project</h2>
                                  </div>
                               </div>
                               <div class="full progress_bar_inner">
@@ -114,37 +90,15 @@ if (strlen($_SESSION['etmsaid']==0)) {
                                              <div class="alert alert-primary" role="alert">
                                                 <form method="post">
                                                    <?php
-$eid=$_GET['editid'];
-$sql="SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID,tbltask.TaskPriority,tbltask.TaskPriority,tbltask.AssignTaskto,tbltask.TaskDescription,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbltask.TaskTitle,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.ID=:eid";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':eid',$eid,PDO::PARAM_STR);
+$eid = $_GET['editid'];
+$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
+$query = $dbh->prepare($sql);
+$query->bindParam(':eid', $eid, PDO::PARAM_STR);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+$cnt = 1;
 if($query->rowCount() > 0)
-{$sql = "SELECT tbltask.ID as tid, 
-   tbltask.TaskTitle, 
-   tbltask.DeptID,
-   tbltask.TaskPriority,
-   tbltask.TaskPriority,
-   tbltask.AssignTaskto,
-   tbltask.TaskDescription,
-   tbltask.TaskEnddate,
-   tbltask.TaskAssigndate,
-   tbltask.ClientName,   
-   tbltask.ProjectLoc,   
-   tbltask.TeamSize,  
-   tbltask.StartDate,    
-   tbltask.TaskTitle,
-   tbldepartment.DepartmentName,
-   tbldepartment.ID as did,
-   tblemployee.EmpName,
-   tblemployee.EmpId
-FROM tbltask
-JOIN tbldepartment ON tbldepartment.ID=tbltask.DeptID
-JOIN tblemployee ON tblemployee.ID=tbltask.AssignTaskto
-WHERE tbltask.ID=:eid";
-
+{
 foreach($results as $row)
 {               ?>
                         
@@ -212,39 +166,19 @@ foreach($result2 as $row3)
                            </div>
 <br>
                            <div class="field">
-                              <label class="label_field">ServiceTitle</label>
+                              <label class="label_field">Project Title</label>
                               <input type="text" name="ttitle" value="<?php echo htmlentities($row->TaskTitle);?>" class="form-control" required='true'>
                            </div>
                            <br>
-                          <div class="field">
-                              <label class="label_field">Client Name</label>
-                              <textarea type="text" name="ClientName" value="" class="form-control" required='true'><?php echo htmlentities($row->ClientName);?></textarea>
-                           </div>
-                           <br>
-                             <div class="field">
-                              <label class="label_field">Service Location</label>
-                              <textarea type="text" name="ProjectLoc" value="" class="form-control" required='true'><?php echo htmlentities($row->ProjectLoc);?></textarea>
-                           </div>
-                           <br>
                            <div class="field">
-                              <label class="label_field">Team Size</label>
-                              <textarea type="text" name="TeamSize" value="" class="form-control" required='true'><?php echo htmlentities($row->TeamSize);?></textarea>
-                           </div>
-                           <br>
-                           <div class="field">
-                              <label class="label_field">Service Description</label>
+                              <label class="label_field">Project  Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'><?php echo htmlentities($row->TaskDescription);?></textarea>
                            </div>
                            <br>
-                           <div class="field">
-                              <label class="label_field">Service  Start Date</label>
-                              <input type="date" name="StartDate" value="<?php echo htmlentities($row->StartDate);?>" class="form-control" required='true'>
-                           </div> <?php $cnt=$cnt+1;}} ?>
-                           <br>
                             <div class="field">
-                              <label class="label_field">Service End Date</label>
+                              <label class="label_field">Project  End Date</label>
                               <input type="date" name="tedate" value="<?php echo htmlentities($row->TaskEnddate);?>" class="form-control" required='true'>
-                           </div> <?php $cnt=$cnt+1;} ?>
+                           </div> <?php $cnt=$cnt+1;}} ?>
                            <br>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
@@ -297,4 +231,4 @@ foreach($result2 as $row3)
       <!-- calendar file css -->    
       <script src="js/semantic.min.js"></script>
    </body>
-</html><?php  ?>
+</html><?php } ?>
