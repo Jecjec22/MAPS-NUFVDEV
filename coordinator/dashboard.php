@@ -62,14 +62,14 @@ if (strlen($_SESSION['etmsaid']==0)) {
                               <div class="counter_no">
                                  <div>
                                     <?php 
-                        $sql1 ="SELECT * from  tblreport";
+                   $sql1 ="SELECT * from  tblreport";
 $query1 = $dbh -> prepare($sql1);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totdept=$query1->rowCount();
 ?><a href="betweendates-task-report.php" >
-                                    <p class="total_no"><?php echo htmlentities($totdept);?></p>
-                                    <p class="head_couter" style="color:#fff !important">Total Service Reports</p>
+                               <!--       <p class="total_no"><?php echo htmlentities($totdept);?></p>
+                                     <p class="head_couter" style="color:#fff !important">Total Service Reports</p> 
                                  </a>
                                  </div>
                               </div>
@@ -83,7 +83,7 @@ $totdept=$query1->rowCount();
                                  </div>
                               </div>
                               <div class="counter_no">
-                                 <div>
+                                 <div> -->
                                     <?php 
                         $sql2 ="SELECT * from  tblemployee";
 $query2 = $dbh -> prepare($sql2);
@@ -92,7 +92,7 @@ $results2=$query2->fetchAll(PDO::FETCH_OBJ);
 $totemp=$query2->rowCount();
 ?><a href="manage-employee.php">
                                    <p class="total_no"><?php echo htmlentities($totemp);?></p>
-                                    <p class="head_couter" style="color:#fff">Total Employees</p>
+                                    <p class="head_couter" style=color:#000>Total Employees</p>
                                  </a>
                                  </div>
                               </div>
@@ -109,14 +109,14 @@ $totemp=$query2->rowCount();
                                  <div>
                                      <?php 
                                   
-                        $sql3 ="SELECT * from  tblemployee";
+                        $sql3 ="SELECT * from  tbltask where WorkCompleted='100'";
 $query3 = $dbh -> prepare($sql3);
 $query3->execute();
 $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $inprotask=$query3->rowCount();
 ?><a href="completed-task.php">
                                    <p class="total_no"><?php echo htmlentities($inprotask);?></p>
-                                    <p class="head_couter" style="color:#fff">Completed Service/p>
+                                    <p class="head_couter" style=color:#000>Completed Service </p>
                                     </a>
                                  </div>
                               </div>
@@ -132,14 +132,14 @@ $inprotask=$query3->rowCount();
                               <div class="counter_no">
                                  <div>
                                     <?php 
-                        $sql4 ="SELECT * from  tbltask where Status='Completed'";
+                        $sql4 ="SELECT * from  tbltask where Status ='Inprogress'";
 $query4 = $dbh -> prepare($sql4);
 $query4->execute();
 $results4=$query4->fetchAll(PDO::FETCH_OBJ);
 $comptask=$query4->rowCount();
 ?><a href="inprogress-task.php">
                                    <p class="total_no"><?php echo htmlentities($comptask);?></p>
-                                    <p class="head_couter" style="color:#fff">Inprogress Service</p>
+                                    <p class="head_couter" style=color:#000>Inprogress Service</p>
                                  </a>
                                  </div>
                               </div>

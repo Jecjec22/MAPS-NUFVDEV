@@ -69,7 +69,7 @@ $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totdept=$query1->rowCount();
 ?><a href="betweendates-task-report.php" >
                                     <p class="total_no"><?php echo htmlentities($totdept);?></p>
-                                    <p class="head_couter" style="color:#fff !important">Total Service Reports</p>
+                                    <p class="head_couter" style="color:#000 !important">Total Service Reports</p>
                                  </a>
                                  </div>
                               </div>
@@ -85,61 +85,62 @@ $totdept=$query1->rowCount();
                               <div class="counter_no">
                                  <div>
                                     <?php 
-                        $sql2 ="SELECT * from  tblemployee";
-$query2 = $dbh -> prepare($sql2);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$totemp=$query2->rowCount();
-?><a href="manage-employee.php">
-                                   <p class="total_no"><?php echo htmlentities($totemp);?></p>
-                                    <p class="head_couter" style="color:#fff">Total Employees</p>
-                                 </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30 red_bg">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-file white_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                     <?php 
-                                  
-                        $sql3 ="SELECT * from  tblemployee";
-$query3 = $dbh -> prepare($sql3);
-$query3->execute();
-$results3=$query3->fetchAll(PDO::FETCH_OBJ);
-$inprotask=$query3->rowCount();
-?><a href="completed-task.php">
-                                   <p class="total_no"><?php echo htmlentities($inprotask);?></p>
-                                    <p class="head_couter" style="color:#fff">Completed Service/p>
-                                    </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30 green_bg">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-file white_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <?php 
-                        $sql4 ="SELECT * from  tbltask where Status='Completed'";
-$query4 = $dbh -> prepare($sql4);
-$query4->execute();
-$results4=$query4->fetchAll(PDO::FETCH_OBJ);
-$comptask=$query4->rowCount();
-?><a href="inprogress-task.php">
-                                   <p class="total_no"><?php echo htmlentities($comptask);?></p>
-                                    <p class="head_couter" style="color:#fff">Inprogress Service</p>
+                         $sql2 ="SELECT * from  tblemployee";
+                         $query2 = $dbh -> prepare($sql2);
+                         $query2->execute();
+                         $results2=$query2->fetchAll(PDO::FETCH_OBJ);
+                         $totemp=$query2->rowCount();
+                         ?><a href="manage-employee.php">
+                                                            <p class="total_no"><?php echo htmlentities($totemp);?></p>
+                                                             <p class="head_couter" style=color:#000>Total Employees</p>
+                                                          </a>
+                                                          </div>
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="col-md-6 col-lg-3">
+                                                    <div class="full counter_section margin_bottom_30 red_bg">
+                                                       <div class="couter_icon">
+                                                          <div> 
+                                                             <i class="fa fa-file white_color"></i>
+                                                          </div>
+                                                       </div>
+                                                       <div class="counter_no">
+                                                          <div>
+                                                              <?php 
+                                                           
+                                                 $sql3 ="SELECT * from  tbltask where WorkCompleted='100'";
+                         $query3 = $dbh -> prepare($sql3);
+                         $query3->execute();
+                         $results3=$query3->fetchAll(PDO::FETCH_OBJ);
+                         $inprotask=$query3->rowCount();
+                         ?><a href="completed-task.php">
+                                                            <p class="total_no"><?php echo htmlentities($inprotask);?></p>
+                                                             <p class="head_couter" style=color:#000>Completed Service </p>
+                                                             </a>
+                                                          </div>
+                                                       </div>
+                                                    </div>
+                                                 </div>
+                                                 <div class="col-md-6 col-lg-3">
+                                                    <div class="full counter_section margin_bottom_30 green_bg">
+                                                       <div class="couter_icon">
+                                                          <div> 
+                                                             <i class="fa fa-file white_color"></i>
+                                                          </div>
+                                                       </div>
+                                                       <div class="counter_no">
+                                                          <div>
+                                                             <?php 
+                                                 $sql4 ="SELECT * from  tbltask where Status ='Inprogress'";
+                         $query4 = $dbh -> prepare($sql4);
+                         $query4->execute();
+                         $results4=$query4->fetchAll(PDO::FETCH_OBJ);
+                         $comptask=$query4->rowCount();
+                         ?><a href="inprogress-task.php">
+                                                            <p class="total_no"><?php echo htmlentities($comptask);?></p>
+                                                             <p class="head_couter" style=color:#000>Inprogress Service</p>
+                                                          </a>
                                  </a>
                                  </div>
                               </div>

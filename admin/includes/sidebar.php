@@ -35,29 +35,31 @@ foreach($results as $row)
                      <li><a href="dashboard.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
                      
                      <li>
-                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users purple_color"></i> <span>Employee</span></a>
+                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users purple_color"></i> <span>Manage Employee</span></a>
                         <ul class="collapse list-unstyled" id="element">
                           
-                           <li><a href="manage-employee.php">> <span>View Technicians</span></a></li>
+                        <li><a href="view-employee.php">> <span>View Employees</span></a></li>
                            
                         </ul>
                      </li>
                      
                      <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Service</span></a>
+                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Manage Services</span></a>
                         <ul class="collapse list-unstyled" id="apps">
                         
-                           <li><a href="manage-task.php">> <span>Assign Technician</span></a></li>
+                           <li><a href="manage-task.php">> <span>Allocate Technician</span></a></li>
+                           <li><a href="inprogress-task.php">> <span> View Inprogress Service</span></a></li>
+                           <li><a href="completed-task.php">> <span>View Completed Service</span></a></li>
                           
                         </ul>
                      </li>
                      <li>
-                        <a href="#apps1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Service Status</span></a>
+                       <!-- <a href="#apps1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Service Status</span></a>
                         <ul class="collapse list-unstyled" id="apps1">
                            <li><a href="inprogress-task.php">> <span>Inprogress Service</span></a></li>
                            <li><a href="completed-task.php">> <span>Completed Service</span></a></li>
                           
-                        </ul>
+                        </ul>-->
                      </li>
                     
                     
@@ -74,7 +76,7 @@ foreach($results as $row)
                         </ul>
                      </li>
                      <li><a href="search-employee.php"><i class="fa fa-map purple_color2"></i> <span>Search Employee</span></a></li> -->
-                     <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>Service Report </span></a></li>
+                     <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>Manage Leave Request </span></a></li>
                     
                   </ul>
                </div>

@@ -124,12 +124,24 @@ foreach($result2 as $row2)
                            </div>
                            <br>
                            <div class="field">
-                              <label class="label_field">Project Title</label>
+                              <label class="label_field">Service Title</label>
+                              <input type="text" name="ttitle" value="" class="form-control" required='true'>
+                           </div>
+                           <br>
+                           <br>
+                           <div class="field">
+                              <label class="label_field">Client Name</label>
+                              <input type="text" name="ttitle" value="" class="form-control" required='true'>
+                           </div>
+                           <br>
+                           <br>
+                           <div class="field">
+                              <label class="label_field">Service Address</label>
                               <input type="text" name="ttitle" value="" class="form-control" required='true'>
                            </div>
                            <br>
                            <div class="field">
-                              <label class="label\\_field">Project Description</label>
+                              <label class="label\\_field">Service Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
                            </div>
                            <br>
@@ -150,7 +162,7 @@ foreach($result2 as $row2)
                            </div>
                            <br>
                             <div class="field">
-                              <label class="label_field">Project End Date</label>
+                              <label class="label_field">Service Deadline</label>
                               <input type="date" name="tedate" value="" class="form-control" required='true'>
                            </div>
                            <br>
