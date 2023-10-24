@@ -72,7 +72,7 @@ if (strlen($_SESSION['etmsempid']==0)) {
                                           <tr>
                                              <th>S.No</th>
                                              <th>Service Title</th>
-                                             <th>Role</th>
+                                             <th>Work for</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>
                                              <th>End Date</th>

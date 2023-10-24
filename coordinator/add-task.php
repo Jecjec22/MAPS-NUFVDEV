@@ -13,13 +13,21 @@ if (strlen($_SESSION['etmsaid']==0)) {
  $ttitle=$_POST['ttitle'];
  $tdesc=$_POST['tdesc'];
  $tedate=$_POST['tedate'];
-$sql="insert into tbltask(DeptID,TaskPriority,TaskTitle,TaskDescription,TaskEnddate)values(:deptid,:tpriority,:ttitle,:tdesc,:tedate)";
+ $clientName=$_POST['clientName'];
+ $clientAddress=$_POST['clientAddress'];
+ $startDate=$_POST['startDate'];
+ $sql = "INSERT INTO tbltask (DeptID, TaskPriority, TaskTitle, TaskDescription, TaskEnddate, ClientName, ClientAddress, StartDate) VALUES (:deptid, :tpriority, :ttitle, :tdesc, :tedate, :clientName, :clientAddress, :startDate)";
+
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptid',$deptid,PDO::PARAM_STR);
 $query->bindParam(':tpriority',$tpriority,PDO::PARAM_STR);
 $query->bindParam(':ttitle',$ttitle,PDO::PARAM_STR);
 $query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
 $query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
+$query->bindParam(':clientName', $_POST['clientName'], PDO::PARAM_STR);
+$query->bindParam(':clientAddress', $_POST['clientAddress'], PDO::PARAM_STR);
+$query->bindParam(':startDate', $_POST['startDate'], PDO::PARAM_STR);
+
 
  $query->execute();
 
@@ -103,7 +111,7 @@ echo "<script>window.location.href ='add-task.php'</script>";
                                                 <form method="post">
                         <fieldset>
                             <div class="field">
-                              <label class="label_field">Role</label>
+                              <label class="label_field">Service for</label>
                               <select type="text" name="deptid" id="deptid" value="" class="form-control" required='true'>
                                  <option value="">Select Role</option>
                                   <?php 
@@ -130,16 +138,46 @@ foreach($result2 as $row2)
                            <br>
                            <br>
                            <div class="field">
-                              <label class="label_field">Client Name</label>
-                              <input type="text" name="ttitle" value="" class="form-control" required='true'>
-                           </div>
+                                            <label class="label_field">Client Name</label>
+                                            <select name="clientName" class="form-control" required="true">
+
+                                                <option value="">Select Client Name</option>
+                                                <?php
+                                                // Connect to the database
+                                                $conn = new PDO("mysql:host=localhost;dbname=etmsdb", "root", "");
+
+                                                // Fetch client names from tblclient
+                                                $sql = "SELECT clientName FROM tblclient";
+                                                $stmt = $conn->query($sql);
+
+                                                // Loop through results and populate the dropdown
+                                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                    echo "<option value='{$row['clientName']}'>{$row['clientName']}</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                            <br>
                            <br>
                            <div class="field">
                               <label class="label_field">Service Address</label>
-                              <input type="text" name="ttitle" value="" class="form-control" required='true'>
+                              <select name="clientAddress" class="form-control" required="true">
+                              <option value="">Select Client Address</option>
+                                                <?php
+                                    $conn = new PDO("mysql:host=localhost;dbname=etmsdb", "root", "");
+                                    $sql = "SELECT clientAddress FROM tblclient";
+                                    $stmt = $conn->query($sql);
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                       echo "<option value='{$row['clientAddress']}'>{$row['clientAddress']}</option>";
+                                   }
+                                   ?>
+                               </select>
                            </div>
                            <br>
+
+
+
+                           
                            <div class="field">
                               <label class="label\\_field">Service Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
@@ -160,12 +198,22 @@ foreach($result2 as $row2)
                               </select>
                            </div>
                            </div>
+
                            <br>
+
+<div class="field">
+  <label class="label_field">Service Start Date</label>
+  <input type="date" name="startDate" value="" class="form-control" required='true'>
+</div>
+<br>
+                           <br>
+
                             <div class="field">
                               <label class="label_field">Service Deadline</label>
                               <input type="date" name="tedate" value="" class="form-control" required='true'>
                            </div>
                            <br>
+
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
                               <button class="main_bt" type="submit" name="submit" id="submit">Add</button>

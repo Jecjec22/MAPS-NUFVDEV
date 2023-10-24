@@ -1,4 +1,4 @@
- <nav id="sidebar">
+<nav id="sidebar">
                <div class="sidebar_blog_1">
                   <div class="sidebar-header">
                      <div class="logo_section">
@@ -8,7 +8,7 @@
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_icon.png" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/layout_img/super.png" alt="#" /></div>
                         <div class="user_info">
                            <?php
 $aid=$_SESSION['etmsaid'];
@@ -40,26 +40,25 @@ foreach($results as $row)
                           
                         <li><a href="view-employee.php">> <span>View Employees</span></a></li>
                            
-                        </ul>
-                     </li>
-                     
-                     <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Manage Services</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Manpower Allocation</span></a>
+                           <ul class="collapse list-unstyled" id="apps">
+                           
+                              <li><a href="manage-task.php">> <span>Allocate Technician</span></a></li>
                         
-                           <li><a href="manage-task.php">> <span>Allocate Technician</span></a></li>
-                           <li><a href="inprogress-task.php">> <span> View Inprogress Service</span></a></li>
-                           <li><a href="completed-task.php">> <span>View Completed Service</span></a></li>
+                             
                           
-                        </ul>
+                           </ul>
                      </li>
                      <li>
-                       <!-- <a href="#apps1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Service Status</span></a>
+                       <a href="#apps1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Manage Services</span></a>
                         <ul class="collapse list-unstyled" id="apps1">
-                           <li><a href="inprogress-task.php">> <span>Inprogress Service</span></a></li>
+                           <li><a href="inprogress-task.php">> <span>In progress Service</span></a></li>
                            <li><a href="completed-task.php">> <span>Completed Service</span></a></li>
                           
-                        </ul>-->
+                        </ul>
                      </li>
                     
                     

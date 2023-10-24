@@ -32,7 +32,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $row)
 {               ?>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user"><?php  echo $row->EmpName;?>(<?php  echo $row->EmpId;?>)</span></a><?php $cnt=$cnt+1;}} ?>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/tech.png" alt="#" /><span class="name_user"><?php  echo $row->EmpName;?>(<?php  echo $row->EmpId;?>)</span></a><?php $cnt=$cnt+1;}} ?>
                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="profile.php">My Profile</a>
                                        <a class="dropdown-item" href="change-password.php">Settings</a>

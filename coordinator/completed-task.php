@@ -72,7 +72,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                                           <tr>
                                              <th>S.No</th>
                                              <th>Project Title</th>
-                                             <th>Role</th>
+                                             <th>Work by</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>
                                              <th>End Date</th>

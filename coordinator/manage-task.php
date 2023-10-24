@@ -62,7 +62,7 @@ $query->execute();
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Manage Project</h2>
+                              <h2>Manage Service</h2>
                            </div>
                         </div>
                      </div>
@@ -74,7 +74,7 @@ $query->execute();
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Manage Project</h2>
+                                    <h2>Manage Service</h2>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -83,8 +83,8 @@ $query->execute();
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
-                                             <th>Role</th>                                          
+                                             <th>Service Title</th>
+                                             <th>Work for</th>                                          
                                              <th>Assign Date</th>
                                              <th>End Date</th>
                                              <th>Action</th>
