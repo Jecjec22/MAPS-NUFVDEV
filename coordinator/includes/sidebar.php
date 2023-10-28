@@ -34,7 +34,7 @@ foreach($results as $row)
                     
                      <li><a href="dashboard.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
                      <li class="active">
-                        <a href="#dashboard1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-files-o orange_color"></i> <span>Roles</span></a>
+                      <!--  <a href="#dashboard1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-files-o orange_color"></i> <span>Roles</span></a>
                         <ul class="collapse list-unstyled" id="dashboard1">
                            <li>
                               <a href="add-dept.php">> <span>Add Role</span></a>
@@ -42,7 +42,7 @@ foreach($results as $row)
                            <li>
                               <a href="manage-dept.php">> <span>Manage Role</span></a>
                            </li>
-                        </ul>
+                        </ul>-->
                      </li>
                      
                      <li>
@@ -50,7 +50,7 @@ foreach($results as $row)
                         <ul class="collapse list-unstyled" id="element">
                            <li><a href="add-employee.php">> <span>Add Employee</span></a></li>
                            <li><a href="manage-employee.php">> <span>Update Employee</span></a></li>
-                           <li><a href="view-employee.php">> <span>View Employee</span></a></li>
+                        <!--    <li><a href="view-employee.php">> <span>View Employee</span></a></li>-->
                         </ul>
                      </li>
                      <li class="active">

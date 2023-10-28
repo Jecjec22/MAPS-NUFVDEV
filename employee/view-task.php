@@ -11,52 +11,40 @@ if (strlen($_SESSION['etmsempid']) == 0) {
         $status = $_POST['status'];
         $remark = $_POST['remark'];
         $workcom = $_POST['workcom'];
-        
-        // Handle uploaded service report
-        if (isset($_FILES['serviceReport']) && $_FILES['serviceReport']['error'] === UPLOAD_ERR_OK) {
-         $file = $_FILES['serviceReport']['tmp_name'];
-         $fileName = $_FILES['serviceReport']['name'];
-         $destination = 'C:/xampp3/htdocs/MAPS-NUFVDEV/employee/images/' . $fileName; // Use directory separator "/"
-         if (move_uploaded_file($file, $destination)) {
-             // Update the "ServiceReport" column in the database
-             $sql = "UPDATE tbltasktracking SET ServiceReport = :serviceReport WHERE TaskID = :vid";
-             $query = $dbh->prepare($sql);
-             $query->bindParam(':serviceReport', $destination, PDO::PARAM_STR);
-             $query->bindParam(':vid', $vid, PDO::PARAM_STR);
-             $query->execute();
-         } else {
-             // Handle file upload error
-             echo '<script>alert("Error uploading service report")</script>';
-         }
-     }
-        
-        // Insert data into the database
-        $sql = "INSERT INTO tbltasktracking (TaskID, Remark, Status, WorkCompleted, ServiceReport) VALUES (:vid, :remark, :status, :workcom, :serviceReport)";
-        $query = $dbh->prepare($sql);
-        $query->bindParam(':vid', $vid, PDO::PARAM_STR);
-        $query->bindParam(':remark', $remark, PDO::PARAM_STR);
-        $query->bindParam(':status', $status, PDO::PARAM_STR);
-        $query->bindParam(':workcom', $workcom, PDO::PARAM_STR);
-        $query->bindParam(':serviceReport', $destination, PDO::PARAM_STR);
-        $query->execute();
-        
-        // Update other fields in the tbltask and tbltasktracking tables
-        $sql = "UPDATE tbltask SET Status = :status, Remark = :remark, WorkCompleted = :workcom WHERE ID = :vid";
-        $query = $dbh->prepare($sql);
-        $query->bindParam(':status', $status, PDO::PARAM_STR);
-        $query->bindParam(':remark', $remark, PDO::PARAM_STR);
-        $query->bindParam(':workcom', $workcom, PDO::PARAM_STR);
-        $query->bindParam(':vid', $vid, PDO::PARAM_STR);
-        $query->execute();
-        
-       
-        echo '<script>alert("Remark has been updated")</script>';
-        echo "<script>window.location.href ='all-task.php'</script>";
-       
-  }
-  
+        $picss = $_FILES["pics"]["name"];
+        $tempFile = $_FILES["pics"]["tmp_name"];
+        $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/coordinator/images/";
 
-  ?>
+        // Handle file upload
+        if (move_uploaded_file($tempFile, $targetDirectory . $picss)) {
+            // File successfully moved to the directory
+
+            // Insert data into the database
+            $sql = "INSERT INTO tbltasktracking (TaskID, Remark, Status, WorkCompleted, ServiceReport) VALUES (:vid, :remark, :status, :workcom, :pics)";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':vid', $vid, PDO::PARAM_STR);
+            $query->bindParam(':remark', $remark, PDO::PARAM_STR);
+            $query->bindParam(':status', $status, PDO::PARAM_STR);
+            $query->bindParam(':workcom', $workcom, PDO::PARAM_STR);
+            $query->bindParam(':pics', $picss, PDO::PARAM_STR);
+            $query->execute();
+
+            // Update other fields in the tbltask and tbltasktracking tables
+            $sql = "UPDATE tbltask SET Status = :status, Remark = :remark, WorkCompleted = :workcom WHERE ID = :vid";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':status', $status, PDO::PARAM_STR);
+            $query->bindParam(':remark', $remark, PDO::PARAM_STR);
+            $query->bindParam(':workcom', $workcom, PDO::PARAM_STR);
+            $query->bindParam(':vid', $vid, PDO::PARAM_STR);
+            $query->execute();
+
+            echo '<script>alert("Remark has been updated")</script>';
+            echo "<script>window.location.href ='all-task.php'</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -217,7 +205,7 @@ if ($status != "") {
             <th>Status</th>
             <th>Service Progress</th>
             <th>Time</th>
-            <th>Service Report</th> <!-- New column for Service Report -->
+           
         </tr>
         <?php
         foreach ($results as $row) {
@@ -236,11 +224,7 @@ if ($status != "") {
                 <!-- Display Service Report as a clickable link -->
                 <td>
                 <?php
-if ($row->ServiceReport != "") {
-    echo '<a href="' . $row->ServiceReport . '" target="_blank"><img src="' . $row->ServiceReport . '" alt="Service Report" style="max-width: 100px; max-height: 100px;"></a>';
-} else {
-    echo 'No Report Available';
-}
+
 ?>
 
 
@@ -300,8 +284,8 @@ if ($status=="" || $status=="Inprogress"){
    </select></td>
   </tr>
    <tr><tr>
-  <label for="serviceReport">Upload Service Report:</label>
-  <input type="file" name="serviceReport" class="form-control-file" required="true">
+  <label for="pics">Upload Service Report:</label>
+  <input type="file" name="pics" class="form-control-file" id="pics" required="true">
   </td>
 </tr>
                                              
@@ -358,4 +342,4 @@ if ($status=="" || $status=="Inprogress"){
       <!-- calendar file css -->    
       <script src="js/semantic.min.js"></script>
    </body>
-</html><?php } ?>
+</html><?php  ?>
