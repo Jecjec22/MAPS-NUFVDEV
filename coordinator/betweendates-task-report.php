@@ -201,7 +201,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                 <td>${row['Submitted by']}</td>
                 <td>${row.WorkCompleted}</td>
                 <td>${row.UpdationDate}</td>
-                <td><img src="${row.ServiceReport}" alt="Service Report Image" style="max-width: 100px; max-height: 100px;"></td>
+                <td><img src="images/${row.ServiceReport}" alt="Service Report Image" style="max-width: 100px; max-height: 100px;"></td>
             `;
             tableBody.appendChild(newRow);
         });
