@@ -25,7 +25,7 @@ $query->execute();
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Project Reports</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Service Reports</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -62,7 +62,7 @@ $query->execute();
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Project Reports</h2>
+                              <h2>Service Reports</h2>
                            </div>
                         </div>
                      </div>
@@ -74,7 +74,7 @@ $query->execute();
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Project Reports</h2>
+                                    <h2>Service Reports</h2>
                                  </div>
                               </div>
                               <div class="table_section padding_infor_info">
@@ -88,7 +88,7 @@ $tdate=$_POST['todate'];
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
+                                             <th>Service Title</th>
                                              <th>Role</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>

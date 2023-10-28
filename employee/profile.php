@@ -156,7 +156,7 @@ foreach($results as $row)
 
                            <br>
                            <div class="field">
-                              <label class="label_field">Empoyee Address</label>
+                              <label class="label_field">Employee Address</label>
                               <textarea type="text" name="empadd" class="form-control" required='true'><?php echo htmlentities($row->EmpAddress);?></textarea>
                            </div>
                           
