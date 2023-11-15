@@ -9,6 +9,8 @@ if (strlen($_SESSION['etmsaid']==0)) {
   {
 
  $deptid=$_POST['deptid'];
+ $emplist=$_POST['emplist'];
+ 
  $tpriority=$_POST['tpriority'];
  $ttitle=$_POST['ttitle'];
  $tdesc=$_POST['tdesc'];
@@ -16,10 +18,11 @@ if (strlen($_SESSION['etmsaid']==0)) {
  $clientName=$_POST['clientName'];
  $clientAddress=$_POST['clientAddress'];
  $startDate=$_POST['startDate'];
- $sql = "INSERT INTO tbltask (DeptID, TaskPriority, TaskTitle, TaskDescription, TaskEnddate, ClientName, ClientAddress, StartDate) VALUES (:deptid, :tpriority, :ttitle, :tdesc, :tedate, :clientName, :clientAddress, :startDate)";
-
+$sql="insert into tbltask(DeptID,AssignTaskto,TaskPriority,TaskTitle,TaskDescription,TaskEnddate, ClientName, ClientAddress, StartDate)values(:deptid,:emplist,:tpriority,:ttitle,:tdesc,:tedate,:clientName, :clientAddress, :startDate)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptid',$deptid,PDO::PARAM_STR);
+$query->bindParam(':emplist',$emplist,PDO::PARAM_STR);
+
 $query->bindParam(':tpriority',$tpriority,PDO::PARAM_STR);
 $query->bindParam(':ttitle',$ttitle,PDO::PARAM_STR);
 $query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
@@ -27,7 +30,6 @@ $query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
 $query->bindParam(':clientName', $_POST['clientName'], PDO::PARAM_STR);
 $query->bindParam(':clientAddress', $_POST['clientAddress'], PDO::PARAM_STR);
 $query->bindParam(':startDate', $_POST['startDate'], PDO::PARAM_STR);
-
 
  $query->execute();
 
@@ -48,7 +50,7 @@ echo "<script>window.location.href ='add-task.php'</script>";
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Add Service</title>
+      <title>Manpower Allocation and Planning System || Add Service</title>
     
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -66,7 +68,16 @@ echo "<script>window.location.href ='add-task.php'</script>";
       <!-- calendar file css -->
       <link rel="stylesheet" href="js/semantic.min.css" />
      <script type="text/javascript">
-
+function getemp(val) {
+$.ajax({
+type: "POST",
+url: "get_emp.php",
+data:'deptid='+val,
+success: function(data){
+$("#emplist").html(data);
+}
+});
+}
 </script>
 
      </script>
@@ -99,7 +110,7 @@ echo "<script>window.location.href ='add-task.php'</script>";
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Service Details</h2>
+                                    <h2>Add Service</h2>
                                  </div>
                               </div>
                               <div class="full progress_bar_inner">
@@ -110,33 +121,14 @@ echo "<script>window.location.href ='add-task.php'</script>";
                                              <div class="alert alert-primary" role="alert">
                                                 <form method="post">
                         <fieldset>
-                            <div class="field">
-                              <label class="label_field">Service for</label>
-                              <select type="text" name="deptid" id="deptid" value="" class="form-control" required='true'>
-                                 <option value="">Select Role</option>
-                                  <?php 
 
-$sql2 = "SELECT * from   tbldepartment ";
-$query2 = $dbh -> prepare($sql2);
-$query2->execute();
-$result2=$query2->fetchAll(PDO::FETCH_OBJ);
 
-foreach($result2 as $row2)
-{          
-    ?>  
-   
-<option value="<?php echo htmlentities($row2->ID);?>"><?php echo htmlentities($row2->DepartmentName
-    );?></option>
- <?php } ?>
-                              </select>
-                           </div>
-                           <br>
-                           <div class="field">
+                        <div class="field">
                               <label class="label_field">Service Title</label>
                               <input type="text" name="ttitle" value="" class="form-control" required='true'>
                            </div>
-                           <br>
-                           <br>
+
+  <br>
                            <div class="field">
                                             <label class="label_field">Client Name</label>
                                             <select name="clientName" class="form-control" required="true">
@@ -176,11 +168,45 @@ foreach($result2 as $row2)
                            <br>
 
 
-
+                           <br>
+                           <div class="field">
+                              <label class="label_field">Service Description</label>
+                              <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
+                           </div>
+                           <br>
                            
                            <div class="field">
-                              <label class="label\\_field">Service Description</label>
-                              <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
+  <label class="label_field">Service for</label>
+  <select type="text" name="deptid" id="deptid" onChange="getemp(this.value); getemp2(this.value);" value="" class="form-control" required='true'>
+    <option value="">Select Employee</option>
+    <?php 
+    $sql2 = "SELECT * from tbldepartment";
+    $query2 = $dbh->prepare($sql2);
+    $query2->execute();
+    $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+    foreach ($result2 as $row2) {          
+    ?>  
+    <option value="<?php echo htmlentities($row2->ID);?>"><?php echo htmlentities($row2->DepartmentName);?></option>
+    <?php } ?>
+  </select>
+</div>
+
+                           <br>
+                           <div class="field">
+                              <div class="field">
+                              <label class="label_field">Employee</label>
+                              <select type="text" name="emplist" id="emplist" value="" class="form-control" required='true'>
+
+                              </select>
+                              </div>
+                           <br>
+                         <!--  <div class="field">
+                              <div class="field">
+                              <label class="label_field">Employee List2</label>
+                              <select type="text" name="emplist2" id="emplist2" value="" class="form-control" required='true'>
+    -->
+                              </select>
+                           </div>
                            </div>
                            <br>
                           <div class="field">
@@ -189,31 +215,30 @@ foreach($result2 as $row2)
                               <select type="text" name="tpriority" value="" class="form-control" required='true'>
                                  <option value="">Select Services Needed</option>
                                  <option value="Repair">Repair</option>
-                                 <option value="Maintenance">Maintenztenance</option>
+                                 <option value="Maintenance">Maintenance</option>
                                  <option value="Installation">Installation</option>
                                  <option value="Repair and Maintenance">Repair and Maintenance</option>
                                  <option value="Repair and Installation">Repair and Installation</option>
                                  <option value="Maintenance and Installation">Maintenance and Installation</option>
                                  <option value="Repair, Maintenance, and Installation">Repair, Maintenance, and Installation</option>
+                                
                               </select>
                            </div>
                            </div>
-
-                           <br>
+<br>
 
 <div class="field">
   <label class="label_field">Service Start Date</label>
   <input type="date" name="startDate" value="" class="form-control" required='true'>
 </div>
 <br>
-                           <br>
 
-                            <div class="field">
+<div class="field">
                               <label class="label_field">Service Deadline</label>
                               <input type="date" name="tedate" value="" class="form-control" required='true'>
                            </div>
                            <br>
-
+                           
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
                               <button class="main_bt" type="submit" name="submit" id="submit">Add</button>
@@ -244,5 +269,26 @@ foreach($result2 as $row2)
       <script src="https://code.jquery.com/jquery-3.1.1.min.js">
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!-- wow animation -->
+      <script src="js/animate.js"></script>
+      <!-- select country -->
+      <script src="js/bootstrap-select.js"></script>
+      <!-- owl carousel -->
+      <script src="js/owl.carousel.js"></script> 
+      <!-- chart js -->
+      <script src="js/Chart.min.js"></script>
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
+      <script src="js/analyser.js"></script>
+      <!-- nice scrollbar -->
+      <script src="js/perfect-scrollbar.min.js"></script>
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>
+      <!-- custom js -->
+      <script src="js/custom.js"></script>
+      <!-- calendar file css -->    
+      <script src="js/semantic.min.js"></script>
    </body>
 </html><?php } ?>

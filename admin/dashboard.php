@@ -62,29 +62,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                               <div class="counter_no">
                                  <div>
                                     <?php 
-                        $sql1 ="SELECT * from  tblreport";
-$query1 = $dbh -> prepare($sql1);
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totdept=$query1->rowCount();
-?><a href="betweendates-task-report.php" >
-                                    <p class="total_no"><?php echo htmlentities($totdept);?></p>
-                                    <p class="head_couter" style="color:#000 !important">Total Service Reports</p>
-                                 </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30 blue1_bg">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-users white_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <?php 
+                       
                          $sql2 ="SELECT * from  tblemployee";
                          $query2 = $dbh -> prepare($sql2);
                          $query2->execute();

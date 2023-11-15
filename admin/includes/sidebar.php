@@ -74,9 +74,11 @@ foreach($results as $row)
                            
                         </ul>
                      </li>
-                     <li><a href="search-employee.php"><i class="fa fa-map purple_color2"></i> <span>Search Employee</span></a></li> -->
-                     <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>Manage Leave Request </span></a></li>
+                     <li><a href="search-employee.php"><i class="fa fa-map purple_color2"></i> <span>Search Employee</span></a></li> 
+--> <li><a href="leave-request.php"><i class="fa fa-files-o orange_color"></i> <span>Manage Leave Request </span></a></li>
                     
                   </ul>
                </div>
             </nav>
+
+       

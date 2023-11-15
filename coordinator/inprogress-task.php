@@ -71,11 +71,11 @@ if (strlen($_SESSION['etmsaid']==0)) {
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
+                                             <th>Service Title</th>
                                              <th>Work for</th>
                                              <th>Assign To</th>
-                                             <th>Assign Date</th>
-                                             <th>End Date</th>
+                                             <th>Start Date</th>
+                                             <th>Deadline</th>
                                              <th>Status</th>
                                              <th>Action</th>
                                           </tr>
@@ -84,7 +84,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 
                                           <?php
                                            
-$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.Status,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.Status='Inprogress' ";
+$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.Status,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.StartDate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.Status='Inprogress' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -100,7 +100,7 @@ foreach($results as $row)
                                              <td><?php  echo htmlentities($row->TaskTitle);?></td>
                                              <td><?php  echo htmlentities($row->DepartmentName);?></td>
                                              <td><?php  echo htmlentities($row->EmpName);?>(<?php  echo htmlentities($row->EmpId);?>)</td>
-                                             <td><?php  echo htmlentities($row->TaskAssigndate);?></td>
+                                             <td><?php  echo htmlentities($row->StartDate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>
 <?php if($row->Status==""){ ?>
 

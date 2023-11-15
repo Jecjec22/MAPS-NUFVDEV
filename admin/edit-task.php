@@ -1,12 +1,28 @@
 <?php
 session_start();
-//error_reporting(0);
 include('includes/dbconnection.php');
+
 if (strlen($_SESSION['etmsaid']) == 0) {
     header('location:logout.php');
 } else {
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['updateDate'])) {
+        // Code to update dates only
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['tedate'];
+        $eid = $_GET['editid'];
 
+        $sql = "UPDATE tbltask SET StartDate=:startDate, TaskEnddate=:endDate WHERE ID=:eid";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':startDate', $startDate, PDO::PARAM_STR);
+        $query->bindParam(':endDate', $endDate, PDO::PARAM_STR);
+        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+        $query->execute();
+
+        echo '<script>alert("Service dates updated successfully")</script>';
+    }
+
+    if (isset($_POST['submit'])) {
+        // Code to update all fields including dates
         $deptid = $_POST['deptid'];
         $emplist = $_POST['emplist'];
         $tpriority = $_POST['tpriority'];
@@ -15,21 +31,57 @@ if (strlen($_SESSION['etmsaid']) == 0) {
         $tedate = $_POST['tedate'];
         $startDate = $_POST['startDate'];
         $eid = $_GET['editid'];
-        $sql = "update tbltask set DeptID=:deptid,AssignTaskto=:emplist,TaskPriority=:tpriority,TaskTitle=:ttitle,TaskDescription=:tdesc,TaskEnddate=:tedate,StartDate=:startDate where ID=:eid";
-        $query = $dbh->prepare($sql);
-        $query->bindParam(':deptid', $deptid, PDO::PARAM_STR);
-        $query->bindParam(':emplist', $emplist, PDO::PARAM_STR);
-        $query->bindParam(':tpriority', $tpriority, PDO::PARAM_STR);
-        $query->bindParam(':ttitle', $ttitle, PDO::PARAM_STR);
-        $query->bindParam(':tdesc', $tdesc, PDO::PARAM_STR);
-        $query->bindParam(':tedate', $tedate, PDO::PARAM_STR);
-        $query->bindParam(':startDate', $startDate, PDO::PARAM_STR);
-        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-        $query->execute();
-        echo '<script>alert("You successfully allocate the service")</script>';
+
+        // Retrieve leave requests for the assigned employee with 'approved' status
+        $sqlLeave = "SELECT start_date, end_date FROM leave_requests WHERE employee_id = :emplist AND status = 'approved'";
+
+        $queryLeave = $dbh->prepare($sqlLeave);
+        $queryLeave->bindParam(':emplist', $emplist, PDO::PARAM_STR);
+        $queryLeave->execute();
+        $leaveResults = $queryLeave->fetchAll(PDO::FETCH_ASSOC);
+
+        // Check for leave overlap
+        $leaveOverlap = false;
+
+        // Iterate through the leave requests
+        foreach ($leaveResults as $leave) {
+            $leaveStartDate = new DateTime($leave['start_date']);
+            $leaveEndDate = new DateTime($leave['end_date']);
+            $taskStartDate = new DateTime($startDate);
+            $taskEndDate = new DateTime($tedate);
+        
+            // Check if the leave request is 'approved'
+            if ($taskStartDate <= $leaveEndDate && $taskEndDate >= $leaveStartDate && $leave['status'] === 'approved') {
+                // There is an overlap with an 'approved' leave request, set the flag to true
+                $leaveOverlap = true;
+                break;
+            }
+        }
+        
+        if ($leaveOverlap) {
+            echo '<script>alert("Leave dates overlap with the task assignment dates. Please select different dates or employee.")</script>';
+        } else {
+            // No leave overlap, proceed with the task assignment
+            $sql = "UPDATE tbltask SET DeptID=:deptid, AssignTaskto=:emplist, TaskPriority=:tpriority, TaskTitle=:ttitle, TaskDescription=:tdesc, TaskEnddate=:tedate, StartDate=:startDate WHERE ID=:eid";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':deptid', $deptid, PDO::PARAM_STR);
+            $query->bindParam(':emplist', $emplist, PDO::PARAM_STR);
+            $query->bindParam(':tpriority', $tpriority, PDO::PARAM_STR);
+            $query->bindParam(':ttitle', $ttitle, PDO::PARAM_STR);
+            $query->bindParam(':tdesc', $tdesc, PDO::PARAM_STR);
+            $query->bindParam(':tedate', $tedate, PDO::PARAM_STR);
+            $query->bindParam(':startDate', $startDate, PDO::PARAM_STR);
+            $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+            $query->execute();
+        
+            echo '<script>alert("Service details updated successfully")</script>';
+        }
     }
 }
+    
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +132,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                             <div class="white_shd full margin_bottom_30">
                                 <div class="full graph_head">
                                     <div class="heading1 margin_0">
-                                        <h2>Allocate Technician</h2>
+                                    <h2>Allocate Technician</h2>
                                     </div>
                                 </div>
                                 <div class="full progress_bar_inner">
@@ -89,52 +141,78 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                             <div class="full">
                                                 <div class="padding_infor_info">
                                                     <div class="alert alert-primary" role="alert">
-                                                    <form method="post" onsubmit="return validateDates();">
+                                                    <form method="post" onsubmit="return validateForm();">
 
-                                                            <?php
-                                                            $eid = $_GET['editid'];
-                                                            $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
-                                                            $query = $dbh->prepare($sql);
-                                                            $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-                                                            $query->execute();
-                                                            $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                                            $cnt = 1;
-                                                            if ($query->rowCount() > 0) {
-                                                                foreach ($results as $row) {
-                                                                    ?>
-                                                                    <fieldset>
-                                        <div class="field">
-                                            <label class="label_field">Work for</label>
-                                            <select type="text" id="deptid" name="deptid" class="form-control" required='true'>
-                                                <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->DepartmentName); ?></option>
-                                                <?php
-                                                $sql2 = "SELECT * from   tbldepartment ";
-                                                $query2 = $dbh->prepare($sql2);
-                                                $query2->execute();
-                                                $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-                                                foreach ($result2 as $row2) {
-                                                    ?>
-                                                    <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->DepartmentName); ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <br>
-                                        <div class="field">
-                                            <div class="field">
-                                                <label class="label_field">Assigned to</label>
-                                                <select type="text" id="emplist" name="emplist" class="form-control" required='true'>
-                                                    <option value="<?php echo htmlentities($row->AssignTaskto); ?>"><?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)</option>
-                                                    <?php
-                                                    $sql2 = "SELECT * from   tblemployee ";
-                                                    $query2 = $dbh->prepare($sql2);
-                                                    $query2->execute();
-                                                    $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-                                                    foreach ($result2 as $row3) {
-                                                        ?>
-                                                        <option value="<?php echo htmlentities($row3->ID); ?>"><?php echo htmlentities($row3->EmpName); ?>(<?php echo htmlentities($row3->EmpId); ?>)</option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
+
+                                                        <?php
+                                                        $eid = $_GET['editid'];
+                                                        $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
+                                                        $query = $dbh->prepare($sql);
+                                                        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+                                                        $query->execute();
+                                                        $results = $query->fetchAll(PDO::FETCH_OBJ);
+                                                        $cnt = 1;
+                                                        if ($query->rowCount() > 0) {
+                                                            foreach ($results as $row) {
+                                                                ?>
+                                                                <fieldset>
+                                    <div class="field">
+                                        <label class="label_field">Work for</label>
+                                        <select type="text" id="deptid" name="deptid" class="form-control" required='true'>
+                                            <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->DepartmentName); ?></option>
+                                            <?php
+                                            $sql2 = "SELECT * from tbldepartment ";
+                                            $query2 = $dbh->prepare($sql2);
+                                            $query2->execute();
+                                            $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+                                            foreach ($result2 as $row2) {
+                                                ?>
+                                                <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->DepartmentName); ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="field">
+                                        <label class="label_field">Assigned to</label>
+                                        <select type="text" id="emplist" name="emplist" class="form-control" required='true'>
+                                            <option value="<?php echo htmlentities($row->AssignTaskto); ?>">
+                                                <?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)
+                                            </option>
+                                            <?php
+                                            // Fetch a list of available employees
+                                            $start_date = $row->StartDate;
+                                            $end_date = $row->TaskEnddate;
+
+                                            $sql2 = "SELECT tblemployee.ID, tblemployee.EmpName, tblemployee.EmpId
+                                                    FROM tblemployee
+                                                    WHERE tblemployee.ID NOT IN (
+                                                        SELECT AssignTaskto
+                                                        FROM tbltask
+                                                        WHERE (:start_date BETWEEN StartDate AND TaskEnddate
+                                                            OR :end_date BETWEEN StartDate AND TaskEnddate)
+                                                    )";
+
+                                            $query2 = $dbh->prepare($sql2);
+                                            $query2->bindParam(':start_date', $row->StartDate, PDO::PARAM_STR);
+                                            $query2->bindParam(':end_date', $row->TaskEnddate, PDO::PARAM_STR);
+                                            $query2->execute();
+                                            $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+
+                                            foreach ($result2 as $row3) {
+                                                ?>
+                                                <option value="<?php echo htmlentities($row3->ID); ?>">
+                                                    <?php echo htmlentities($row3->EmpName); ?>(<?php echo htmlentities($row3->EmpId); ?>)
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+
+                                
+
+
+
+
                                         </div>
                                         <br>
                                         <div class="field">
@@ -173,12 +251,23 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                             <input type="date" id="endDate" name="tedate" value="<?php echo htmlentities($row->TaskEnddate); ?>" class="form-control" required='true'>
                                         </div>
                                         <br>
+        
+
+                                        <br>
+                                        <br>
+                                        
                                         <div class="field margin_0">
-                                            <label class="label_field hidden">hidden label</label>
-                                            <button class="main_bt" type="submit" name="submit" id="submit">Update</button>
-                                        </div>
+        <label class="label_field hidden">hidden label</label>
+     <br>
+        <button class="main_bt" type="submit" name="updateDate" id="updateDate">Update Date</button> 
+        
+                                   
+        <button class="main_bt" type="submit" name="submit" id="submit">Allocate</button>
+    </div>
                                     </fieldset>
                                 </form>
+
+                                
                             </div>
                         </div>
                     </div>
@@ -223,19 +312,36 @@ if (strlen($_SESSION['etmsaid']) == 0) {
 <script src="js/semantic.min.js"></script>
 <!-- Start Date and End Date validation -->
 <script>
-   function validateDates() {
-   
+   function validateForm() {
     var startDate = new Date(document.getElementById("startDate").value);
-    var endDate = new Date(document.getElementById("endDate").value);
-    
-    
-    if (startDate > endDate) {
-        alert("Start Date can't be later than End Date");
-        return false;
-    }
+    var endDate = new Date(document.getElementById("tedate").value);
+    var updateDateButton = document.getElementById("updateDate");
+    var submitButton = document.getElementById("submit");
 
+    if (document.activeElement === updateDateButton) {
+        // "Update Date" button was clicked, allow the form to be submitted without date validation
+        return true;
+    } else if (document.activeElement === submitButton) {
+        // "Allocate" button was clicked, apply date validation
+        if (startDate > endDate) {
+            alert("Start Date can't be later than End Date");
+            return false;
+        }
+
+        // Check for leave overlap here
+        // (You have already implemented this part)
+
+        // If there is a leave overlap, show an alert and prevent form submission
+        if (leaveOverlap) {
+            alert("Leave dates overlap with the task assignment dates. Please select different dates or employee.");
+            return false;
+        }
+    }
     return true;
-}
+    }
+</script>
+
+
 
 </script>
 </body>

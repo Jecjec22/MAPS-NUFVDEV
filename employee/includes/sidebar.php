@@ -53,7 +53,19 @@
          </li>
          <!-- Add the Service Report link here  
          <li><a href="service-report.php"><i class="fa fa-file-text green_color"></i> <span>Submit Service Report</span></a></li> --> 
-         <li><a href="employee-leave.php"><i class="fa fa-dashboard yellow_color"></i> <span>File a Leave</span></a></li>
+        
+         <li class="active">
+            <a href="#dashboard3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-files-o orange_color"></i> <span>Leave Request</span></a>
+            <ul class="collapse list-unstyled" id="dashboard3">
+               <li>
+                  <a href="employee-leave.php">> <span>File a Leave</span></a>  
+               </li>
+                     
+               <li>
+                  <a href="leavehistory.php">> <span>Leave Status History</span></a>
+               </li>
+      
+      
     </ul>
    </div>
 </nav>

@@ -25,7 +25,7 @@ $query->bindParam(':tdesc',$tdesc,PDO::PARAM_STR);
 $query->bindParam(':tedate',$tedate,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
-  echo '<script>alert("Project detail has been updated")</script>';
+  echo '<script>alert("Task detail has been updated")</script>';
 }
 
 ?>
@@ -79,7 +79,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                            <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>Update Project</h2>
+                                    <h2>Update Service</h2>
                                  </div>
                               </div>
                               <div class="full progress_bar_inner">
@@ -104,7 +104,7 @@ foreach($results as $row)
                         
                         <fieldset>
                             <div class="field">
-                              <label class="label_field">Role</label>
+                              <label class="label_field">Service For</label>
                               <select type="text" name="deptid" value="" class="form-control" required='true'>
                                  <option value="<?php echo htmlentities($row->DeptID);?>"><?php echo htmlentities($row->DepartmentName);?></option>
                                   <?php 
@@ -126,7 +126,7 @@ foreach($result2 as $row2)
                            <br>
                            <div class="field">
                               <div class="field">
-                              <label class="label_field">Employee List</label>
+                              <label class="label_field">Assign To</label>
                               <select type="text" name="emplist" value="" class="form-control" required='true'>
                                  <option value="<?php echo htmlentities($row->AssignTaskto);?>"><?php echo htmlentities($row->EmpName);?>(<?php echo htmlentities($row->EmpId);?>)</option>
                                   <?php 
@@ -149,10 +149,10 @@ foreach($result2 as $row3)
                            </div>
                            <br>
                           <div class="field">
-                              <div class="field">
+                          <div class="field">
                               <label class="label_field">Services Needed</label>
-                              <select type="text" name="tpriority" class="form-control" required='true'>
-                                 <option value="<?php echo htmlentities($row->TaskPriority);?>"><?php echo htmlentities($row->TaskPriority);?></option>
+                              <select type="text" name="tpriority" value="" class="form-control" required='true'>
+                                 <option value="">Select Services Needed</option>
                                  <option value="Repair">Repair</option>
                                  <option value="Maintenance">Maintenance</option>
                                  <option value="Installation">Installation</option>
@@ -166,23 +166,23 @@ foreach($result2 as $row3)
                            </div>
 <br>
                            <div class="field">
-                              <label class="label_field">Project Title</label>
+                              <label class="label_field">Service Title</label>
                               <input type="text" name="ttitle" value="<?php echo htmlentities($row->TaskTitle);?>" class="form-control" required='true'>
                            </div>
                            <br>
                            <div class="field">
-                              <label class="label_field">Project  Description</label>
+                              <label class="label_field">Service Description</label>
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'><?php echo htmlentities($row->TaskDescription);?></textarea>
                            </div>
                            <br>
                             <div class="field">
-                              <label class="label_field">Project  End Date</label>
+                              <label class="label_field">Service End Date</label>
                               <input type="date" name="tedate" value="<?php echo htmlentities($row->TaskEnddate);?>" class="form-control" required='true'>
                            </div> <?php $cnt=$cnt+1;}} ?>
                            <br>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
-                              <button class="main_bt" type="submit" name="submit" id="submit">Add</button>
+                              <button class="main_bt" type="submit" name="submit" id="submit">Update</button>
                            </div>
                         </fieldset>
                      </form></div>

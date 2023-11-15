@@ -81,7 +81,7 @@ foreach($results as $row)
                         </ul>
                      </li>
                   <li>
-                  <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>view Service Report </span></a></li>
+                  <li><a href="betweendates-task-report.php"><i class="fa fa-clone yellow_color"></i> <span>View Service Report </span></a></li>
                     
                          <!--   <li><a href="inprogress-task.php">> <span>Generate Reports</span></a></li> -->
                            
