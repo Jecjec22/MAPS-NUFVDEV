@@ -13,10 +13,12 @@ if (strlen($_SESSION['etmsaid']) == 0) {
         $searchStatus = '%';
     }
     
-    $sql = "SELECT tt.TaskID, t.ClientName AS Client, t.TaskTitle AS `Service Title`, tt.Status AS Status, tt.WorkCompleted, tt.UpdationDate, t.AssignTaskTo AS `Submitted by`, tt.ServiceReport
-            FROM tbltasktracking tt
-            JOIN tbltask t ON tt.TaskID = t.ID
-            WHERE LOWER(t.ClientName) LIKE :client AND LOWER(tt.Status) LIKE :status";
+    $sql = "SELECT tt.TaskID, t.ClientName AS Client, t.TaskTitle AS `Service Title`, tt.Status AS Status, tt.WorkCompleted, tt.UpdationDate, e.EmpName AS `Submitted by`, tt.ServiceReport
+    FROM tbltasktracking tt
+    JOIN tbltask t ON tt.TaskID = t.ID
+    JOIN tblemployee e ON t.AssignTaskTo = e.EmpID
+    WHERE LOWER(t.ClientName) LIKE :client AND LOWER(tt.Status) LIKE :status";
+
             
     $query = $dbh->prepare($sql);
     $query->bindParam(':client', $searchClient, PDO::PARAM_STR);
