@@ -10,7 +10,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 
  $deptname=$_POST['deptname'];
  $eid=$_GET['editid'];
-$sql="update tbldepartment set DepartmentName=:deptname where ID=:eid";
+$sql="update tblrole set EmployeeRole=:deptname where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptname',$deptname,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
@@ -81,7 +81,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                                                 <form method="post">
                                                    <?php
 $eid=$_GET['editid'];
-$sql="SELECT * from  tbldepartment where ID=$eid";
+$sql="SELECT * from tblrole  where ID=$eid";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -94,7 +94,7 @@ foreach($results as $row)
                             
                            <div class="field">
                               <label class="label_field">Role</label>
-                              <input type="text" name="deptname" value="<?php  echo htmlentities($row->DepartmentName);?>" class="form-control" required='true'>
+                              <input type="text" name="deptname" value="<?php  echo htmlentities($row->EmployeeRole);?>" class="form-control" required='true'>
                            </div>
                           <?php $cnt=$cnt+1;}} ?>
 

@@ -86,9 +86,9 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql_with_assignment = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.StartDate, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId
+                                                $sql_with_assignment = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.StartDate, tblrole.EmployeeRole, tblrole.ID as did, tblemployee.EmpName, tblemployee.EmpId
 FROM tbltask
-JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID
+JOIN tblrole ON tblrole.ID = tbltask.DeptID
 JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto
 WHERE tbltask.AssignTaskto IS NOT NULL
 ORDER BY 
@@ -109,7 +109,7 @@ ORDER BY
                                                     <tr>
                                                         <td><?php echo htmlentities($cnt); ?></td>
                                                         <td><?php echo htmlentities($row->TaskTitle); ?></td>
-                                                        <td><?php echo htmlentities($row->DepartmentName); ?></td>
+                                                        <td><?php echo htmlentities($row->EmployeeRole); ?></td>
                                                         <td><?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)
                                                         </td>
                                                         <td><?php echo htmlentities($row->StartDate); ?></td>

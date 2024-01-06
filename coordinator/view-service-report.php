@@ -11,7 +11,7 @@ if (strlen($_SESSION['etmsaid'] == 0)) {
 <html lang="en">
 
 <head>
-    <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View New Service</title>
+    <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || View Service Report</title>
     <!-- Add your CSS links here -->
 </head>
 

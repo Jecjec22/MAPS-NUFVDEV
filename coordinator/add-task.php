@@ -180,13 +180,13 @@ $("#emplist").html(data);
   <select type="text" name="deptid" id="deptid" onChange="getemp(this.value); getemp2(this.value);" value="" class="form-control" required='true'>
     <option value="">Select Employee</option>
     <?php 
-    $sql2 = "SELECT * from tbldepartment";
+    $sql2 = "SELECT * from tblrole";
     $query2 = $dbh->prepare($sql2);
     $query2->execute();
     $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
     foreach ($result2 as $row2) {          
     ?>  
-    <option value="<?php echo htmlentities($row2->ID);?>"><?php echo htmlentities($row2->DepartmentName);?></option>
+    <option value="<?php echo htmlentities($row2->ID);?>"><?php echo htmlentities($row2->EmployeeRole);?></option>
     <?php } ?>
   </select>
 </div>

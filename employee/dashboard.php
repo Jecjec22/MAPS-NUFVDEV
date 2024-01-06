@@ -29,6 +29,18 @@ if (strlen($_SESSION['etmsempid']==0)) {
       <!-- custom css -->
       <link rel="stylesheet" href="css/custom.css" />
       
+ <!-- jQuery -->
+ <script src="js/jquery.min.js"></script>
+
+<!-- Custom script for the time-in popup -->
+<script>
+    $(document).ready(function() {
+        // Show the time-in popup when the page is loaded
+        $("#timeInModal").modal("show");
+    });
+</script>
+
+
    </head>
    <body class="dashboard dashboard_1">
       <div class="full_container">
@@ -132,7 +144,7 @@ $comptask=$query4->rowCount();
 
 
 <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30 blue1_bg">
+         <div class="full counter_section margin_bottom_30 blue1_bg">
                               <div class="couter_icon">
                                  <div> 
                                     <i class="fa fa-files-o"></i>
@@ -155,7 +167,28 @@ $alltasks=$query5->rowCount();
                               </div>
                            </div>
                         </div>
+  <!-- Time In Modal 
+  <div class="modal fade" id="timeInModal" tabindex="-1" role="dialog" aria-labelledby="timeInModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="timeInModalLabel">Time in for today</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            You can customize the content of the modal body here -->
+                                            <!-- For example, you may want to add a form for the time in functionality 
+                                            <form id="timeInForm" action="process_time_in.php" method="post">-->
+    <!-- Add any form elements you need 
+    <button type="submit" name="submit" class="btn btn-primary">Time in</button>
+</form>-->
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
                      </div>

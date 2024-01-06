@@ -84,7 +84,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 
                                           <?php
                                           
-$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.Status,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.StartDate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.Status='Completed' ";
+$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.Status,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.StartDate,tblrole.EmployeeRole,tblrole.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tblrole on tblrole.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.Status='Completed' ";
 $query = $dbh -> prepare($sql);
 
 $query->execute();
@@ -99,7 +99,7 @@ foreach($results as $row)
                                               
                                              <td><?php echo htmlentities($cnt);?></td>
                                              <td><?php  echo htmlentities($row->TaskTitle);?></td>
-                                             <td><?php  echo htmlentities($row->DepartmentName);?></td>
+                                             <td><?php  echo htmlentities($row->EmployeeRole);?></td>
                                              <td><?php  echo htmlentities($row->EmpName);?>(<?php  echo htmlentities($row->EmpId);?>)</td>
                                              <td><?php  echo htmlentities($row->StartDate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>

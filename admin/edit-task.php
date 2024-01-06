@@ -146,7 +146,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
 
                                                         <?php
                                                         $eid = $_GET['editid'];
-                                                        $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
+                                                        $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tblrole.EmployeeRole, tblrole.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tblrole ON tblrole.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
                                                         $query = $dbh->prepare($sql);
                                                         $query->bindParam(':eid', $eid, PDO::PARAM_STR);
                                                         $query->execute();
@@ -159,15 +159,15 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                     <div class="field">
                                         <label class="label_field">Work for</label>
                                         <select type="text" id="deptid" name="deptid" class="form-control" required='true'>
-                                            <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->DepartmentName); ?></option>
+                                            <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->EmployeeRole); ?></option>
                                             <?php
-                                            $sql2 = "SELECT * from tbldepartment ";
+                                            $sql2 = "SELECT * from tblrole ";
                                             $query2 = $dbh->prepare($sql2);
                                             $query2->execute();
                                             $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
                                             foreach ($result2 as $row2) {
                                                 ?>
-                                                <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->DepartmentName); ?></option>
+                                                <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->EmployeeRole); ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

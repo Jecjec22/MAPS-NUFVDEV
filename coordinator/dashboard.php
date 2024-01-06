@@ -69,6 +69,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
                $totdept=$query1->rowCount();
                ?><a href="betweendates-task-report.php" >
                                                    <p class="total_no"><?php echo htmlentities($totdept);?></p>
+                                                   
                                                    <p class="total_no" style="color: black;  font-size: 20px; !important">Total Service Reports</p>
                                                 </a>
                                                 </div>
@@ -117,6 +118,7 @@ $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $inprotask=$query3->rowCount();
 ?><a href="completed-task.php">
                                    <p class="total_no"><?php echo htmlentities($inprotask);?></p>
+                                               
                                    <p class="head_couter" style="color:#000;  font-size:20px !important">Completed Service </p>
                                     </a>
                                  </div>
@@ -140,6 +142,7 @@ $results4=$query4->fetchAll(PDO::FETCH_OBJ);
 $comptask=$query4->rowCount();
 ?><a href="inprogress-task.php">
                                    <p class="total_no"><?php echo htmlentities($comptask);?></p>
+                               
                                    <p class="head_couter" style="color:#000;font-size:20px !important">Inprogress Service</p>
                                  </a>
                                  </div>
