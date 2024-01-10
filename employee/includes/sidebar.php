@@ -35,6 +35,7 @@
       <ul class="list-unstyled components">
          <li><a href="dashboard.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
          <li><a href="emp-attendance.php"><i class="fa fa-dashboard yellow_color"></i> <span>Time In / Time Out</span></a></li>
+         <li><a href="file-ticket.php"><i class="fa fa-files-o yellow_color"></i> <span>File a Ticket</span></a></li>
          <li class="active">
 
          
