@@ -65,7 +65,7 @@ if (isset($_POST['submitTimeIn'])) {
                 // Execute the INSERT query
                 $query->execute();
 
-                // Commit the transaction
+                // Commit the transactions
                 $dbh->commit();
 
                 echo '<script type="text/javascript">
