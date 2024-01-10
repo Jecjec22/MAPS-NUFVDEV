@@ -13,7 +13,7 @@ if (strlen($_SESSION['etmsempid']) == 0) {
         $workcom = $_POST['workcom'];
         $picss = $_FILES["pics"]["name"];
         $tempFile = $_FILES["pics"]["tmp_name"];
-        $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/coordinator/images/";
+        $targetDirectory = "C:/xampp/htdocs/MAPS-NUFVDEV/coordinator/images/";
 
         // Handle file upload
         if (move_uploaded_file($tempFile, $targetDirectory . $picss)) {

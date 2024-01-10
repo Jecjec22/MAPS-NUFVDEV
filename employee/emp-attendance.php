@@ -44,22 +44,39 @@ if (isset($_POST['submitTimeIn'])) {
                alert("You have already submitted a time-in entry for today.");
              </script>';
         } else {
-            // Insert leave request using the retrieved employee name
-            $sql = "INSERT INTO tblattendance (emp_names, time_in_datetime, day, date)
-                VALUES (:employee_name, CURRENT_TIMESTAMP, DATE_FORMAT(CURRENT_TIMESTAMP, '%a'), DATE(CURRENT_TIMESTAMP))";
-            $query = $dbh->prepare($sql);
-            $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR); // Bind the name to the 'employee_name' parameter
+            // Check if an image file was uploaded
+            if (isset($_FILES['selfie']) && $_FILES['selfie']['error'] === UPLOAD_ERR_OK) {
+                $file = $_FILES['selfie'];
+                $filename = $file['name'];
+                $tmp_path = $file['tmp_name'];
 
-            // Execute the INSERT query
-            $query->execute();
+                // Specify the upload directory and move the uploaded file
+                $upload_dir = 'C:/xampp/htdocs/MAPS-NUFVDEV/admin/images/';
+                $destination = $upload_dir . $filename;
+                move_uploaded_file($tmp_path, $destination);
 
-            // Commit the transaction
-            $dbh->commit();
+                // Insert leave request using the retrieved employee name and uploaded filename
+                $sql = "INSERT INTO tblattendance (emp_names, time_in_datetime, day, date, selfie)
+                    VALUES (:employee_name, CURRENT_TIMESTAMP, DATE_FORMAT(CURRENT_TIMESTAMP, '%a'), DATE(CURRENT_TIMESTAMP), :filename)";
+                $query = $dbh->prepare($sql);
+                $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR); // Bind the name to the 'employee_name' parameter
+                $query->bindParam(':filename', $filename, PDO::PARAM_STR); // Bind the filename to the 'filename' parameter
 
-            echo '<script type="text/javascript">
-             alert("Time In submitted successfully!");
-             window.location = "emp-attendance.php"; // Redirect to a specific page after confirmation.
-           </script>';
+                // Execute the INSERT query
+                $query->execute();
+
+                // Commit the transaction
+                $dbh->commit();
+
+                echo '<script type="text/javascript">
+                 alert("Time In submitted successfully!");
+                 window.location = "emp-attendance.php"; // Redirect to a specific page after confirmation.
+               </script>';
+            } else {
+                echo '<script type="text/javascript">
+                   alert("Please upload a selfie before submitting Time In.");
+                 </script>';
+            }
         }
     } catch (PDOException $e) {
         // Rollback the transaction
@@ -203,35 +220,38 @@ $queryUpdateNumHrs->execute();
                                     </div>
                                 </div>
                                 <div class="table_section padding_infor_info">
-                                    <!-- Time In Form -->
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="time_in_datetime">Time in:</label>
-                                            <input type="text" name="time_in_datetime"
-                                                   class="form-control"
-                                                   value="<?php echo date('Y-m-d H:i:s'); ?>" readonly>
-                                        </div>
-                                        <button type="submit" name="submitTimeIn"
-                                                class="btn btn-primary">Submit Time In
-                                        </button>
-                                    </form>
+                               <!-- Time In Form -->
+<form method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="time_in_datetime">Time in:</label>
+    <input type="text" name="time_in_datetime" id="time_in_datetime" class="form-control" readonly>
+  </div>
+  <div class="form-group">
+    <label for="selfie">Selfie:</label>
+    <input type="file" name="selfie" class="form-control" required>
+  </div>
+  <button type="submit" name="submitTimeIn" class="btn btn-primary">Submit Time In</button>
+</form>
 
-                                    <!-- Time Out Form -->
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="time_out_datetime">Time out:</label>
-                                            <input type="text" name="time_out_datetime"
-                                                   class="form-control"
-                                                   value="<?php echo date('Y-m-d H:i:s'); ?>" readonly>
-                                        </div>
-                                        <button type="submit" name="submitTimeOut"
-                                                class="btn btn-primary">Submit Time Out
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- Time Out Form -->
+<form method="post">
+  <div class="form-group">
+    <label for="time_out_datetime">Time out:</label>
+    <input type="text" name="time_out_datetime" id="time_out_datetime" class="form-control" readonly>
+  </div>
+  <button type="submit" name="submitTimeOut" class="btn btn-primary">Submit Time Out</button>
+</form>
+
+<script>
+  function updateTime() {
+    var currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    document.getElementById("time_in_datetime").value = currentTime;
+    document.getElementById("time_out_datetime").value = currentTime;
+  }
+
+  // Call updateTime every second to update the time
+  setInterval(updateTime, 1000);
+</script>
                 </div>
                 <!-- footer -->
                 <?php include_once('includes/footer.php'); ?>
