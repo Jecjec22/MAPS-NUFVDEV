@@ -81,21 +81,30 @@ foreach($results as $row)
                         </ul>
                      </li>
                   <li>
-                  <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>view Service Report </span></a></li>
-                    
+                  <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>View Service Report </span></a></li>
+                  <li>
+                       <a href="#apps2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Manage Payroll</span></a>
+                        <ul class="collapse list-unstyled" id="apps2">
+                        <li><a href="salary-table.php">> <span>Manage Attendance Salary</span></a></li>
+                        <li><a href="manage-salary.php">> <span>Manage Employee Salary</span></a></li>
+                        
+                          
+                        </ul>
+                     </li>
                          <!--   <li><a href="inprogress-task.php">> <span>Generate Reports</span></a></li> -->
                            
                           
                         </ul> 
                      </li>
+                   <!-- 
+                           <li><a hre 
                     
-                    
-                 <!--    <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span> Manage Service</span></a>
+                    <li class="active">
+                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span> Manage Payroll</span></a>
                         <ul class="collapse list-unstyled" id="additional_page">
                            <li>
-                              <li><a href="add-task.php">> <span>Add Service</span></a></li>
-                           <li><a href="manage-task.php">> <span>Update Service</span></a></li>
+                              <li><a href="add-task.php">> <span>Salary</span></a></li>
+                              f="manage-task.php">> <span>Update Service</span></a></li>
                            <li><a href="inprogress-task.php">> <span> View Inprogress Service</span></a></li>
                            <li><a href="completed-task.php">> <span>View Completed Service</span></a></li>
                            </li>

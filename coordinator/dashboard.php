@@ -2,9 +2,18 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['etmsaid']==0)) {
-  header('location:logout.php');
-  } else{
+
+if (strlen($_SESSION['etmsaid'] == 0)) {
+    header('location:logout.php');
+} else {
+    // Get current date
+    $currentDate = date('j');
+
+    // Check if it's payday
+    $isPayday = ($currentDate == 14 || $currentDate == 29 || $currentDate == 30);
+
+    // Additional message if it's payday
+    $paydayMessage = $isPayday ? "TODAY IS PAYDAY" : "";
 
 
 
@@ -46,8 +55,10 @@ if (strlen($_SESSION['etmsaid']==0)) {
                   <div class="container-fluid">
                      <div class="row column_title">
                         <div class="col-md-12">
-                           <div class="page_title">
+                           <div class="page_title text-center ">
                               <h2>Dashboard</h2>
+                              <p><?php echo date('F j, Y'); ?></p> <!-- Display current date -->
+                                    <p><?php echo $paydayMessage; ?></p> <!-- Display payday message if applicable -->
                            </div>
                         </div>
                      </div>
@@ -62,28 +73,29 @@ if (strlen($_SESSION['etmsaid']==0)) {
                               <div class="counter_no">
                                  <div>
                                     <?php 
-                   $sql1 ="SELECT * from  tblreport";
-$query1 = $dbh -> prepare($sql1);
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totdept=$query1->rowCount();
-?><a href="betweendates-task-report.php" >
-                               <!--       <p class="total_no"><?php echo htmlentities($totdept);?></p>
-                                     <p class="head_couter" style="color:#fff !important">Total Service Reports</p> 
-                                 </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30 blue1_bg">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-users white_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div> -->
+               $sql1 ="SELECT * from  tbltasktracking";
+               $query1 = $dbh -> prepare($sql1);
+               $query1->execute();
+               $results1=$query1->fetchAll(PDO::FETCH_OBJ);
+               $totdept=$query1->rowCount();
+               ?><a href="betweendates-task-report.php" >
+                                                   <p class="total_no"><?php echo htmlentities($totdept);?></p>
+                                                   <p class="head_couter" style="color:#000 !important">Total Service Reports</p>
+                                                </a>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-6 col-lg-3">
+                                          <div class="full counter_section margin_bottom_30 blue1_bg">
+                                             <div class="couter_icon">
+                                                <div> 
+                                                   <i class="fa fa-users white_color"></i>
+                                                </div>
+                                             </div>
+                                             <div class="counter_no">
+                                                <div>
+                                               
                                     <?php 
                         $sql2 ="SELECT * from  tblemployee";
 $query2 = $dbh -> prepare($sql2);

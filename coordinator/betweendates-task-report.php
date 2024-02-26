@@ -14,9 +14,11 @@ if (strlen($_SESSION['etmsaid']) == 0) {
     }
     
     $sql = "SELECT tt.TaskID, t.ClientName AS Client, t.TaskTitle AS `Service Title`, tt.Status AS Status, tt.WorkCompleted, tt.UpdationDate, t.AssignTaskTo AS `Submitted by`, tt.ServiceReport
-            FROM tbltasktracking tt
-            JOIN tbltask t ON tt.TaskID = t.ID
-            WHERE LOWER(t.ClientName) LIKE :client AND LOWER(tt.Status) LIKE :status";
+    FROM tbltasktracking tt
+    JOIN tbltask t ON tt.TaskID = t.ID
+    WHERE LOWER(t.ClientName) LIKE :client AND LOWER(tt.Status) LIKE :status
+    ORDER BY tt.UpdationDate DESC";
+
             
     $query = $dbh->prepare($sql);
     $query->bindParam(':client', $searchClient, PDO::PARAM_STR);
@@ -95,7 +97,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                                 <div class="full">
                                                     <div class="padding_infor_info">
                                                         <form id="filterForm">
-                                                            <div class="form-group">
+                                                         <!--   <div class="form-group">
                                                                 <label for="sortField">Sort By:</label>
                                                                 <select id="sortField" name="sortField" class="form-control">
                                                                     <option value="TaskID">Service ID</option>
@@ -106,7 +108,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                                                 </select>
                                                             </div>
                                                             <button type="submit" class="btn btn-primary">Apply Filter</button>
-                                                        </form>
+                                                        </form>-->
                                                         <table class="table table-bordered">
     <thead>
         <tr>
@@ -114,9 +116,9 @@ if (strlen($_SESSION['etmsaid']) == 0) {
             <th>Client</th>
             <th>Service Title</th>
             <th>Status</th>
-            <th>Submitted by</th>
+            
             <th>WorkCompleted</th>
-            <th>UpdationDate</th>
+            <th>Submitted in</th>
             <th>Service Report</th> <!-- New column for Service Report -->
         </tr>
     </thead>
@@ -128,7 +130,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
             echo '<td>' . $row['Client'] . '</td>';
             echo '<td>' . $row['Service Title'] . '</td>';
             echo '<td>' . $row['Status'] . '</td>';
-            echo '<td>' . $row['Submitted by'] . '</td>';
+           
             echo '<td>' . $row['WorkCompleted'] . '</td>';
             echo '<td>' . $row['UpdationDate'] . '</td>';
             echo '<td>';
@@ -201,7 +203,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                 <td>${row['Submitted by']}</td>
                 <td>${row.WorkCompleted}</td>
                 <td>${row.UpdationDate}</td>
-                <td><img src="images/${row.ServiceReport}" alt="Service Report Image" style="max-width: 100px; max-height: 100px;"></td>
+                <td><img src="${row.ServiceReport}" alt="Service Report Image" style="max-width: 100px; max-height: 100px;"></td>
             `;
             tableBody.appendChild(newRow);
         });

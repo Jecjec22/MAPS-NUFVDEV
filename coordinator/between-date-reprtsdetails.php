@@ -88,7 +88,7 @@ $tdate=$_POST['todate'];
                                        <thead>
                                           <tr>
                                              <th>S.No</th>
-                                             <th>Project Title</th>
+                                             <th>Service Title</th>
                                              <th>Role</th>
                                              <th>Assign To</th>
                                              <th>Assign Date</th>

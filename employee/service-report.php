@@ -12,7 +12,7 @@ $msg = $error = '';
 if (isset($_POST['uploadReport'])) {
     $reportImage = $_FILES['reportImage']['name'];
     $tempReportImage = $_FILES['reportImage']['tmp_name'];
-    $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/coordinator/images/";
+    $targetDirectory = "C:/xampp/htdocs/MAPS-NUFVDEV/coordinator/images/";
 
     if (!empty($reportImage)) {
         if (move_uploaded_file($tempReportImage, $targetDirectory . $reportImage)) {

@@ -74,9 +74,31 @@ foreach($results as $row)
                            
                         </ul>
                      </li>
-                     <li><a href="search-employee.php"><i class="fa fa-map purple_color2"></i> <span>Search Employee</span></a></li> -->
-                     <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>Manage Leave Request </span></a></li>
-                    
+                     <li><a href="search-employee.php"><i class="fa fa-map purple_color2"></i> <span>Search Employee</span></a></li> 
+--> <li><a href="leave-request.php"><i class="fa fa-files-o orange_color"></i> <span>Manage Leave Request </span></a></li>
+<li>
+                <a href="ticket-overview.php">
+                    <i class="fa fa-files-o orange_color"></i>
+                    <span>Manage Tickets</span>
+                    <?php
+                    // Count pending tickets
+                    $sql = "SELECT COUNT(*) AS pending_tickets FROM tickets WHERE status = 'Pending'";
+                    $query = $dbh->prepare($sql);
+                    $query->execute();
+                    $row = $query->fetch(PDO::FETCH_ASSOC);
+                    $pendingTickets = $row['pending_tickets'];
+
+                    // Display notification badge if there are pending tickets
+                    if ($pendingTickets > 0) {
+                        echo "<span class='badge badge-danger'>$pendingTickets</span>";
+                    }
+                   else {
+                     echo "<span class='badge badge-danger'>0</span>";
+                 }
+                    ?>
+                </a>
+            </li> 
+<li><a href="emp-attendance2.php"><i class="fa fa-files-o orange_color"></i> <span>Attendance </span></a></li>
                   </ul>
                </div>
             </nav>

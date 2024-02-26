@@ -5,6 +5,7 @@ include('includes/dbconnection.php');
 
 if (strlen($_SESSION['etmsempid']) == 0) {
     header('location: logout.php');
+    exit; // Stop further execution
 } else {
     if (isset($_POST['submit'])) {
         $vid = $_GET['viewid'];
@@ -13,7 +14,17 @@ if (strlen($_SESSION['etmsempid']) == 0) {
         $workcom = $_POST['workcom'];
         $picss = $_FILES["pics"]["name"];
         $tempFile = $_FILES["pics"]["tmp_name"];
-        $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/coordinator/images/";
+        $targetDirectory = "C:/xampp/htdocs/MAPS-NUFVDEV/coordinator/images/";
+
+        // Server-side validation to only accept specific file extensions
+        $allowedExtensions = array("png", "jpg", "jpeg", "pdf");
+        $uploadedFileExtension = strtolower(pathinfo($picss, PATHINFO_EXTENSION));
+
+        if (!in_array($uploadedFileExtension, $allowedExtensions)) {
+            echo '<script>alert("Only PNG, JPG, JPEG, and PDF files are allowed.");</script>';
+            echo "<script>window.location.href ='all-task.php'</script>";
+            exit; // Stop further execution
+        }
 
         // Handle file upload
         if (move_uploaded_file($tempFile, $targetDirectory . $picss)) {
@@ -341,5 +352,20 @@ if ($status=="" || $status=="Inprogress"){
       <script src="js/custom.js"></script>
       <!-- calendar file css -->    
       <script src="js/semantic.min.js"></script>
-   </body>
+      <script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('form[name="submit"]').addEventListener('submit', function(event) {
+        const fileInput = document.querySelector('input[name="pics"]');
+        const filePath = fileInput.value;
+        const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.pdf)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload files having extensions PNG, JPG, JPEG, or PDF only.');
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+</script>
+</body>
 </html><?php  ?>

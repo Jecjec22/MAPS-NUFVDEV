@@ -25,7 +25,7 @@ $query->execute();
 <html lang="en">
    <head>
       
-      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Project</title>
+      <title>MANPOWER ALLOCATION AND PLANNING SYSTEM || Manage Service</title>
    
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
@@ -85,14 +85,14 @@ $query->execute();
                                              <th>S.No</th>
                                              <th>Service Title</th>
                                              <th>Work for</th>                                          
-                                             <th>Assign Date</th>
+                                             <th>Start Date</th>
                                              <th>End Date</th>
                                              <th>Action</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           <?php
-$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbldepartment.DepartmentName, tbltask.TaskAssigndate, tbltask.TaskEnddate
+$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbldepartment.DepartmentName, tbltask.StartDate, tbltask.TaskEnddate
 FROM tbltask
 JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID";
 $query = $dbh->prepare($sql);
@@ -110,7 +110,7 @@ foreach($results as $row)
                                              <td><?php echo htmlentities($cnt);?></td>
                                              <td><?php  echo htmlentities($row->TaskTitle);?></td>
                                              <td><?php  echo htmlentities($row->DepartmentName);?></td>
-                                             <td><?php  echo htmlentities($row->TaskAssigndate);?></td>
+                                             <td><?php  echo htmlentities($row->StartDate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>
                                              <td><a href="edit-task.php?editid=<?php echo htmlentities ($row->tid);?>" class="btn btn-primary">Edit</a>
                                                  <a href="manage-task.php?delid=<?php echo ($row->tid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger">Delete</a></td>
