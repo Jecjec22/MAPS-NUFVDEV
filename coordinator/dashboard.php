@@ -73,29 +73,28 @@ if (strlen($_SESSION['etmsaid'] == 0)) {
                               <div class="counter_no">
                                  <div>
                                     <?php 
-               $sql1 ="SELECT * from  tbltasktracking";
-               $query1 = $dbh -> prepare($sql1);
-               $query1->execute();
-               $results1=$query1->fetchAll(PDO::FETCH_OBJ);
-               $totdept=$query1->rowCount();
-               ?><a href="betweendates-task-report.php" >
-                                                   <p class="total_no"><?php echo htmlentities($totdept);?></p>
-                                                   <p class="head_couter" style="color:#000 !important">Total Service Reports</p>
-                                                </a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div class="col-md-6 col-lg-3">
-                                          <div class="full counter_section margin_bottom_30 blue1_bg">
-                                             <div class="couter_icon">
-                                                <div> 
-                                                   <i class="fa fa-users white_color"></i>
-                                                </div>
-                                             </div>
-                                             <div class="counter_no">
-                                                <div>
-                                               
+                   $sql1 ="SELECT * from  tblreport";
+$query1 = $dbh -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totdept=$query1->rowCount();
+?><a href="betweendates-task-report.php" >
+                               <!--       <p class="total_no"><?php echo htmlentities($totdept);?></p>
+                                     <p class="head_couter" style="color:#fff !important">Total Service Reports</p> 
+                                 </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full counter_section margin_bottom_30 blue1_bg">
+                              <div class="couter_icon">
+                                 <div> 
+                                    <i class="fa fa-users white_color"></i>
+                                 </div>
+                              </div>
+                              <div class="counter_no">
+                                 <div> -->
                                     <?php 
                         $sql2 ="SELECT * from  tblemployee";
 $query2 = $dbh -> prepare($sql2);
@@ -104,7 +103,7 @@ $results2=$query2->fetchAll(PDO::FETCH_OBJ);
 $totemp=$query2->rowCount();
 ?><a href="manage-employee.php">
                                    <p class="total_no"><?php echo htmlentities($totemp);?></p>
-                                    <p class="head_couter" style=color:#000>Total Employees</p>
+                                   <p class="head_couter" style="color:#000;  font-size:20px !important">Total Employees</p>
                                  </a>
                                  </div>
                               </div>
@@ -128,7 +127,8 @@ $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $inprotask=$query3->rowCount();
 ?><a href="completed-task.php">
                                    <p class="total_no"><?php echo htmlentities($inprotask);?></p>
-                                    <p class="head_couter" style=color:#000>Completed Service </p>
+                                               
+                                   <p class="head_couter" style="color:#000;  font-size:20px !important">Completed Service </p>
                                     </a>
                                  </div>
                               </div>
@@ -151,7 +151,8 @@ $results4=$query4->fetchAll(PDO::FETCH_OBJ);
 $comptask=$query4->rowCount();
 ?><a href="inprogress-task.php">
                                    <p class="total_no"><?php echo htmlentities($comptask);?></p>
-                                    <p class="head_couter" style=color:#000>Inprogress Service</p>
+                               
+                                   <p class="head_couter" style="color:#000;font-size:20px !important">Inprogress Service</p>
                                  </a>
                                  </div>
                               </div>
@@ -176,8 +177,9 @@ $results5=$query5->fetchAll(PDO::FETCH_OBJ);
 $alltasks=$query5->rowCount();
 ?><a href="manage-task.php">
                                     <p class="total_no"><?php echo htmlentities($alltasks);?></p>
-                                    <p class="head_couter" style="color:#000">All Services </p>
+                                    <p class="head_couter" style="color:#000; font-size:20px !important">All Services </p>
                                  </a>
+                                 
                                  </div>
                               </div>
                            </div>

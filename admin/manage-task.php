@@ -28,7 +28,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
     <!-- responsive css -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- color css -->
-    <link rel="stylesheet" href "css/colors.css" />
+    <link rel="stylesheet" href="css/colors.css"/>
     <!-- select bootstrap -->
     <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- scrollbar css -->
@@ -55,73 +55,105 @@ if (strlen($_SESSION['etmsaid']) == 0) {
 </head>
 
 <body class="inner_page tables_page">
-    <div class="full_container">
-        <div class="inner_container">
-            <!-- Sidebar -->
-            <?php include_once('includes/sidebar.php'); ?>
-            <!-- right content -->
-            <div id="content">
-                <!-- topbar -->
-                <?php include_once('includes/header.php'); ?>
-                <!-- end topbar -->
-
-                <!-- dashboard inner -->
-                <div class="midde_cont">
-                    <div class="container-fluid">
-                        <div class="row column_title">
-                            <div class="col-md-12">
-                                <div class="page_title">
-                                    <h2>List of Services</h2>
-                                </div>
+<div class="full_container">
+    <div class="inner_container">
+        <!-- Sidebar -->
+        <?php include_once('includes/sidebar.php'); ?>
+        <!-- right content -->
+        <div id="content">
+            <!-- topbar -->
+            <?php include_once('includes/header.php'); ?>
+            <!-- end topbar -->
+            <!-- dashboard inner -->
+            <div class="midde_cont">
+                <div class="container-fluid">
+                    <div class="row column_title">
+                        <div class="col-md-12">
+                            <div class="page_title">
+                                <h2>List of Services</h2>
                             </div>
                         </div>
-
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="white_shd full margin_bottom_30">
-                                    <div class="full graph_head">
-                                        <div class="heading1 margin_0">
-                                            <h2>Allocate Technician</h2>
-                                        </div>
+                    </div>
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="white_shd full margin_bottom_30">
+                                <div class="full graph_head">
+                                    <div class="heading1 margin_0">
+                                        <h2>Allocate Technician</h2>
                                     </div>
-                                    <div class="table_section padding_infor_info">
-                                        <div class="table-responsive-sm">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>S.No</th>
-                                                        <th>Service Title</th>
-                                                        <th>Work for</th>
-                                                        <th>Assign To</th>
-                                                        <th>Start Date</th>
-                                                        <th>Deadline</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $sql_with_assignment = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.StartDate, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.AssignTaskto IS NOT NULL ORDER BY CASE WHEN tblemployee.EmpName = 'Available(00)' THEN 1 ELSE 2 END, tblemployee.EmpName";
-                                                    $query_with_assignment = $dbh->prepare($sql_with_assignment);
-                                                    $query_with_assignment->execute();
-                                                    $results_with_assignment = $query_with_assignment->fetchAll(PDO::FETCH_OBJ);
+                                </div>
+                                <div class="table_section padding_infor_info">
+                                    <div class="table-responsive-sm">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Service Title</th>
+                                                <th>Work for</th>
+                                                <th>Assign To</th>
+                                                <th>Assign Date</th>
+                                                <th>Deadline</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql_no_assignment = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.StartDate, tbldepartment.DepartmentName, tbldepartment.ID as did
+FROM tbltask
+JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID
+WHERE tbltask.AssignTaskto IS NULL";
 
-                                                    $cnt = 1;
+                                                $sql_with_assignment = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.AssignTaskto, tbltask.TaskEnddate, tbltask.StartDate, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId
+FROM tbltask
+JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID
+JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto
+WHERE tbltask.AssignTaskto IS NOT NULL";
+
+                                                $query_no_assignment = $dbh->prepare($sql_no_assignment);
+                                                $query_no_assignment->execute();
+                                                $results_no_assignment = $query_no_assignment->fetchAll(PDO::FETCH_OBJ);
+
+                                                $query_with_assignment = $dbh->prepare($sql_with_assignment);
+                                                $query_with_assignment->execute();
+                                                $results_with_assignment = $query_with_assignment->fetchAll(PDO::FETCH_OBJ);
+
+                                                $cnt = 1;
+
+                                                // Display records with no assignment
+                                                foreach ($results_no_assignment as $row) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo htmlentities($cnt); ?></td>
+                                                        <td><?php echo htmlentities($row->TaskTitle); ?></td>
+                                                        <td><?php echo htmlentities($row->DepartmentName); ?></td>
+                                                        <td>Not Assigned</td>
+                                                        <td><?php echo htmlentities($row->StartDate); ?></td>
+                                                        <td></td>
+                                                        <td><a href="edit-task.php?editid=<?php echo htmlentities($row->tid); ?>"
+                                                               class="btn btn-primary">Assign</a></td>
+                                                    </tr>
+                                                    <?php
+                                                    $cnt++;
+                                                }
 
                                                     // Display records with assignment
                                                     foreach ($results_with_assignment as $row) {
                                                         // Set the class based on the condition
                                                         $rowClass = ($row->EmpName == 'Available(00)' || $row->EmpId == '00') ? 'green-row' : 'yellow-row';
                                                     ?>
-                                                        <tr class="<?php echo $rowClass; ?>">
-                                                            <td><?php echo htmlentities($cnt); ?></td>
-                                                            <td><?php echo htmlentities($row->TaskTitle); ?></td>
-                                                            <td><?php echo htmlentities($row->DepartmentName); ?></td>
-                                                            <td><?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)</td>
-                                                            <td><?php echo htmlentities($row->StartDate); ?></td>
-                                                            <td><?php echo htmlentities($row->TaskEnddate); ?></td>
-                                                            <td><a href="edit-task.php?editid=<?php echo htmlentities($row->tid); ?>" class="btn btn-primary">Assign</a></td>
-                                                        </tr>
+                                                    <tr>
+                                                        <td><?php echo htmlentities($cnt); ?></td>
+                                                        <td><?php echo htmlentities($row->TaskTitle); ?></td>
+                                                        <td><?php echo htmlentities($row->DepartmentName); ?></td>
+                                                        <td><?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)
+                                                        </td>
+                                                        <td><?php echo htmlentities($row->StartDate); ?></td>
+                                                        <td><?php echo htmlentities($row->TaskEnddate); ?></td>
+                                                        <td><a href="edit-task.php?editid=<?php echo htmlentities($row->tid); ?>"
+                                                               class="btn btn-primary">Assign</a>
+                                                           
+                                                    </tr>
                                                     <?php
                                                         $cnt++;
                                                     }

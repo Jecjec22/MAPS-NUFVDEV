@@ -81,16 +81,8 @@ foreach($results as $row)
                         </ul>
                      </li>
                   <li>
-                  <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>View Service Report </span></a></li>
-                  <li>
-                       <a href="#apps2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Manage Payroll</span></a>
-                        <ul class="collapse list-unstyled" id="apps2">
-                        <li><a href="salary-table.php">> <span>Manage Attendance Salary</span></a></li>
-                        <li><a href="manage-salary.php">> <span>Manage Employee Salary</span></a></li>
-                        
-                          
-                        </ul>
-                     </li>
+                  <li><a href="betweendates-task-report.php"><i class="fa fa-bar-chart-o green_color"></i> <span>view Service Report </span></a></li>
+                    
                          <!--   <li><a href="inprogress-task.php">> <span>Generate Reports</span></a></li> -->
                            
                           

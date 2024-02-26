@@ -92,9 +92,9 @@ $query->execute();
                                        </thead>
                                        <tbody>
                                           <?php
-$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbldepartment.DepartmentName, tbltask.StartDate, tbltask.TaskEnddate
+$sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbldepartment.DepartmentName, tbltask.TaskAssigndate, tbltask.TaskEnddate
 FROM tbltask
-JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID";
+JOIN tblrole ON tblrole.ID = tbltask.DeptID";
 $query = $dbh->prepare($sql);
 $query->execute();
 $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -110,7 +110,7 @@ foreach($results as $row)
                                              <td><?php echo htmlentities($cnt);?></td>
                                              <td><?php  echo htmlentities($row->TaskTitle);?></td>
                                              <td><?php  echo htmlentities($row->DepartmentName);?></td>
-                                             <td><?php  echo htmlentities($row->StartDate);?></td>
+                                             <td><?php  echo htmlentities($row->TaskAssigndate);?></td>
                                              <td><?php  echo htmlentities($row->TaskEnddate);?></td>
                                              <td><a href="edit-task.php?editid=<?php echo htmlentities ($row->tid);?>" class="btn btn-primary">Edit</a>
                                                  <a href="manage-task.php?delid=<?php echo ($row->tid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger">Delete</a></td>

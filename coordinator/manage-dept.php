@@ -10,7 +10,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
 if(isset($_GET['delid']))
 {
 $rid=intval($_GET['delid']);
-$sql="delete from tbldepartment where ID=:rid";
+$sql="delete from tblrole where ID=:rid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->execute();
@@ -90,7 +90,7 @@ $query->execute();
                                        </thead>
                                        <tbody>
                                           <?php
-$sql="SELECT * from tbldepartment";
+$sql="SELECT * from tblrole";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -103,7 +103,7 @@ foreach($results as $row)
                                           <tr>
                                               
                                              <td><?php echo htmlentities($cnt);?></td>
-                                             <td><?php  echo htmlentities($row->DepartmentName);?></td>
+                                             <td><?php  echo htmlentities($row->EmployeeRole);?></td>
                                              <td><?php  echo htmlentities($row->CreationDate);?></td>
                                              <td><a href="edit-department.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary">Edit</a>
                                                 <a href="manage-dept.php?delid=<?php echo ($row->ID);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger">Delete</a></td>

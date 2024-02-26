@@ -94,7 +94,7 @@ $query-> execute();
                         
                             <?php
 $etmseid=$_SESSION['etmsempid'];
-$sql="SELECT tbldepartment.ID as did, tbldepartment.DepartmentName,tblemployee.ID as eid,tblemployee.DepartmentID,tblemployee.EmpName,tblemployee.EmpId,tblemployee.EmpEmail,tblemployee.EmpContactNumber,tblemployee.EmpDateofjoining,tblemployee.Designation,tblemployee.EmpDateofbirth,tblemployee.EmpAddress,tblemployee.Description,tblemployee.ProfilePic,tblemployee.CreationDate from tblemployee join tbldepartment on tbldepartment.ID=tblemployee.DepartmentID where tblemployee.ID=:eid";
+$sql="SELECT tblrole.ID as did, tblrole.EmployeeRole,tblemployee.ID as eid,tblemployee.DepartmentID,tblemployee.EmpName,tblemployee.EmpId,tblemployee.EmpEmail,tblemployee.EmpContactNumber,tblemployee.EmpDateofjoining,tblemployee.Designation,tblemployee.EmpDateofbirth,tblemployee.EmpAddress,tblemployee.Description,tblemployee.ProfilePic,tblemployee.CreationDate from tblemployee join tblrole on tblrole.ID=tblemployee.DepartmentID where tblemployee.ID=:eid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':eid',$etmseid,PDO::PARAM_STR);
 $query->execute();
@@ -109,7 +109,7 @@ foreach($results as $row)
                            <div class="field">
                               <label class="label_field">Role</label>
                               <select type="text" name="deptname" value="" class="form-control" readonly='true'>
-                                 <option value="<?php echo htmlentities($row->DepartmentID);?>"><?php echo htmlentities($row->DepartmentName);?></option>
+                                 <option value="<?php echo htmlentities($row->DepartmentID);?>"><?php echo htmlentities($row->EmployeeRole);?></option>
                               </select>
                            </div>
                           

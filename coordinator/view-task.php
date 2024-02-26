@@ -56,7 +56,7 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                     <div class="table-responsive-sm">
                                         <?php
                                         $vid = $_GET['viewid'];
-                                        $sql = "SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.TaskDescription,tbltask.TaskPriority,tbltask.TaskEnddate,tbltask.Status,tbltask.WorkCompleted,tbltask.Remark,tbltask.UpdationDate,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.ID=:vid";
+                                        $sql = "SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.TaskDescription,tbltask.TaskPriority,tbltask.TaskEnddate,tbltask.Status,tbltask.WorkCompleted,tbltask.Remark,tbltask.UpdationDate,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tblrole.EmployeeRole,tblrole.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tblrole on tblrole.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.ID=:vid";
                                         $query = $dbh->prepare($sql);
                                         $query->bindParam(':vid', $vid, PDO::PARAM_STR);
                                         $query->execute();

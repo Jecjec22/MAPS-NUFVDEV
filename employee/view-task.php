@@ -14,17 +14,7 @@ if (strlen($_SESSION['etmsempid']) == 0) {
         $workcom = $_POST['workcom'];
         $picss = $_FILES["pics"]["name"];
         $tempFile = $_FILES["pics"]["tmp_name"];
-        $targetDirectory = "C:/xampp/htdocs/MAPS-NUFVDEV/coordinator/images/";
-
-        // Server-side validation to only accept specific file extensions
-        $allowedExtensions = array("png", "jpg", "jpeg", "pdf");
-        $uploadedFileExtension = strtolower(pathinfo($picss, PATHINFO_EXTENSION));
-
-        if (!in_array($uploadedFileExtension, $allowedExtensions)) {
-            echo '<script>alert("Only PNG, JPG, JPEG, and PDF files are allowed.");</script>';
-            echo "<script>window.location.href ='all-task.php'</script>";
-            exit; // Stop further execution
-        }
+        $targetDirectory = "C:/xampp3/htdocs/MAPS-NUFVDEV/coordinator/images/";
 
         // Handle file upload
         if (move_uploaded_file($tempFile, $targetDirectory . $picss)) {
@@ -116,7 +106,7 @@ if (strlen($_SESSION['etmsempid']) == 0) {
                                  <div class="table-responsive-sm">
                                     <?php
                                            $vid=$_GET['viewid'];
-$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.TaskDescription,tbltask.TaskPriority,tbltask.TaskEnddate,tbltask.Status,tbltask.WorkCompleted,tbltask.Remark,tbltask.UpdationDate,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.TaskAssigndate,tbldepartment.DepartmentName,tbldepartment.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tbldepartment on tbldepartment.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.ID=:vid";
+$sql="SELECT tbltask.ID as tid,tbltask.TaskTitle,tbltask.TaskDescription,tbltask.TaskPriority,tbltask.ClientName,tbltask.ClientAddress,tbltask.TaskEnddate,tbltask.Status,tbltask.WorkCompleted,tbltask.Remark,tbltask.UpdationDate,tbltask.DeptID,tbltask.AssignTaskto,tbltask.TaskEnddate,tbltask.StartDate,tblrole.EmployeeRole,tblrole.ID as did,tblemployee.EmpName,tblemployee.EmpId from tbltask join tblrole on tblrole.ID=tbltask.DeptID join tblemployee on tblemployee.ID=tbltask.AssignTaskto where tbltask.ID=:vid";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':vid', $vid, PDO::PARAM_STR);
 $query->execute();
@@ -138,16 +128,24 @@ foreach($results as $row)
     <td><?php  echo $row->TaskPriority;?></td>
   </tr>
   <tr>
+    <th>Client Name</th>
+    <td colspan="3"><?php  echo $row->ClientName;?></td>
+ </tr>
+ <tr>
+    <th>Client Address</th>
+    <td colspan="3"><?php  echo $row->ClientAddress;?></td>
+ </tr>
+ <tr>
     <th>Service Description</th>
     <td colspan="3"><?php  echo $row->TaskDescription;?></td>
  </tr>
  <tr>
-     <th>Service Assign Date</th>
-    <td colspan="3"><?php  echo $row->TaskAssigndate;?></td>
+     <th>Service Start Date</th>
+    <td colspan="3"><?php  echo $row->StartDate;?></td>
   </tr>
 
  <tr>
-     <th>Service Finish Date</th>
+     <th>Service Deadline</th>
     <td colspan="3"><?php  echo $row->TaskEnddate;?></td>
   </tr>
 

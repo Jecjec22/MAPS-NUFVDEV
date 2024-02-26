@@ -144,75 +144,50 @@ if (strlen($_SESSION['etmsaid']) == 0) {
                                                     <form method="post" onsubmit="return validateForm();">
 
 
-                                                        <?php
-                                                        $eid = $_GET['editid'];
-                                                        $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
-                                                        $query = $dbh->prepare($sql);
-                                                        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-                                                        $query->execute();
-                                                        $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                                        $cnt = 1;
-                                                        if ($query->rowCount() > 0) {
-                                                            foreach ($results as $row) {
-                                                                ?>
-                                                                <fieldset>
-                                    <div class="field">
-                                        <label class="label_field">Work for</label>
-                                        <select type="text" id="deptid" name="deptid" class="form-control" required='true'>
-                                            <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->DepartmentName); ?></option>
-                                            <?php
-                                            $sql2 = "SELECT * from tbldepartment ";
-                                            $query2 = $dbh->prepare($sql2);
-                                            $query2->execute();
-                                            $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-                                            foreach ($result2 as $row2) {
-                                                ?>
-                                                <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->DepartmentName); ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <div class="field">
-                                        <label class="label_field">Assigned to</label>
-                                        <select type="text" id="emplist" name="emplist" class="form-control" required='true'>
-                                            <option value="<?php echo htmlentities($row->AssignTaskto); ?>">
-                                                <?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)
-                                            </option>
-                                            <?php
-                                            // Fetch a list of available employees
-                                            $start_date = $row->StartDate;
-                                            $end_date = $row->TaskEnddate;
-
-                                            $sql2 = "SELECT tblemployee.ID, tblemployee.EmpName, tblemployee.EmpId
-                                                    FROM tblemployee
-                                                    WHERE tblemployee.ID NOT IN (
-                                                        SELECT AssignTaskto
-                                                        FROM tbltask
-                                                        WHERE (:start_date BETWEEN StartDate AND TaskEnddate
-                                                            OR :end_date BETWEEN StartDate AND TaskEnddate)
-                                                    )";
-
-                                            $query2 = $dbh->prepare($sql2);
-                                            $query2->bindParam(':start_date', $row->StartDate, PDO::PARAM_STR);
-                                            $query2->bindParam(':end_date', $row->TaskEnddate, PDO::PARAM_STR);
-                                            $query2->execute();
-                                            $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-
-                                            foreach ($result2 as $row3) {
-                                                ?>
-                                                <option value="<?php echo htmlentities($row3->ID); ?>">
-                                                    <?php echo htmlentities($row3->EmpName); ?>(<?php echo htmlentities($row3->EmpId); ?>)
-                                                </option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-
-                                
-
-
-
-
+                                                            <?php
+                                                            $eid = $_GET['editid'];
+                                                            $sql = "SELECT tbltask.ID as tid, tbltask.TaskTitle, tbltask.DeptID, tbltask.TaskPriority, tbltask.TaskPriority, tbltask.StartDate, tbltask.AssignTaskto, tbltask.TaskDescription, tbltask.TaskEnddate, tbltask.TaskAssigndate, tbltask.TaskTitle, tbldepartment.DepartmentName, tbldepartment.ID as did, tblemployee.EmpName, tblemployee.EmpId FROM tbltask LEFT JOIN tbldepartment ON tbldepartment.ID = tbltask.DeptID LEFT JOIN tblemployee ON tblemployee.ID = tbltask.AssignTaskto WHERE tbltask.ID = :eid";
+                                                            $query = $dbh->prepare($sql);
+                                                            $query->bindParam(':eid', $eid, PDO::PARAM_STR);
+                                                            $query->execute();
+                                                            $results = $query->fetchAll(PDO::FETCH_OBJ);
+                                                            $cnt = 1;
+                                                            if ($query->rowCount() > 0) {
+                                                                foreach ($results as $row) {
+                                                                    ?>
+                                                                    <fieldset>
+                                        <div class="field">
+                                            <label class="label_field">Work for</label>
+                                            <select type="text" id="deptid" name="deptid" class="form-control" required='true'>
+                                                <option value="<?php echo htmlentities($row->DeptID); ?>"><?php echo htmlentities($row->DepartmentName); ?></option>
+                                                <?php
+                                                $sql2 = "SELECT * from   tbldepartment ";
+                                                $query2 = $dbh->prepare($sql2);
+                                                $query2->execute();
+                                                $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+                                                foreach ($result2 as $row2) {
+                                                    ?>
+                                                    <option value="<?php echo htmlentities($row2->ID); ?>"><?php echo htmlentities($row2->DepartmentName); ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="field">
+                                            <div class="field">
+                                                <label class="label_field">Assigned to</label>
+                                                <select type="text" id="emplist" name="emplist" class="form-control" required='true'>
+                                                    <option value="<?php echo htmlentities($row->AssignTaskto); ?>"><?php echo htmlentities($row->EmpName); ?>(<?php echo htmlentities($row->EmpId); ?>)</option>
+                                                    <?php
+                                                    $sql2 = "SELECT * from   tblemployee ";
+                                                    $query2 = $dbh->prepare($sql2);
+                                                    $query2->execute();
+                                                    $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+                                                    foreach ($result2 as $row3) {
+                                                        ?>
+                                                        <option value="<?php echo htmlentities($row3->ID); ?>"><?php echo htmlentities($row3->EmpName); ?>(<?php echo htmlentities($row3->EmpId); ?>)</option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                         </div>
                                         <br>
                                         <div class="field">

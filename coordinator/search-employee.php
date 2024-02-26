@@ -112,7 +112,7 @@ $sdata=$_POST['searchdata'];
                                        </thead>
                                        <tbody>
                                           <?php
-$sql="SELECT tbldepartment.ID as did, tbldepartment.DepartmentName,tblemployee.ID as eid,tblemployee.DepartmentID,tblemployee.EmpName,tblemployee.EmpId,tblemployee.EmpEmail,tblemployee.EmpContactNumber,tblemployee.EmpDateofjoining from tblemployee join tbldepartment on tbldepartment.ID=tblemployee.DepartmentID where tblemployee.EmpId like '$sdata%'";
+$sql="SELECT tblrole.ID as did, tblrole.EmployeeRole,tblemployee.ID as eid,tblemployee.DepartmentID,tblemployee.EmpName,tblemployee.EmpId,tblemployee.EmpEmail,tblemployee.EmpContactNumber,tblemployee.EmpDateofjoining from tblemployee join tblrole on tblrole.ID=tblemployee.DepartmentID where tblemployee.EmpId like '$sdata%'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -125,7 +125,7 @@ foreach($results as $row)
                                           <tr>
                                               
                                              <td><?php echo htmlentities($cnt);?></td>
-                                             <td><?php  echo htmlentities($row->DepartmentName);?></td>
+                                             <td><?php  echo htmlentities($row->EmployeeRole);?></td>
                                              <td><?php  echo htmlentities($row->EmpName);?></td>
                                              <td><?php  echo htmlentities($row->EmpId);?></td>
                                              <td><?php  echo htmlentities($row->EmpEmail);?></td>

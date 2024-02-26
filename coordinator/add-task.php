@@ -174,41 +174,6 @@ $("#emplist").html(data);
                               <textarea type="text" name="tdesc" value="" class="form-control" required='true'></textarea>
                            </div>
                            <br>
-                           
-                           <div class="field">
-  <label class="label_field">Service for</label>
-  <select type="text" name="deptid" id="deptid" onChange="getemp(this.value); getemp2(this.value);" value="" class="form-control" required='true'>
-    <option value="">Select Employee</option>
-    <?php 
-    $sql2 = "SELECT * from tbldepartment";
-    $query2 = $dbh->prepare($sql2);
-    $query2->execute();
-    $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-    foreach ($result2 as $row2) {          
-    ?>  
-    <option value="<?php echo htmlentities($row2->ID);?>"><?php echo htmlentities($row2->DepartmentName);?></option>
-    <?php } ?>
-  </select>
-</div>
-
-                           <br>
-                           <div class="field">
-                              <div class="field">
-                              <label class="label_field">Employee List</label>
-                              <select type="text" name="emplist" id="emplist" value="" class="form-control" required='true'>
-
-                              </select>
-                              </div>
-                           <br>
-                         <!--  <div class="field">
-                              <div class="field">
-                              <label class="label_field">Employee List2</label>
-                              <select type="text" name="emplist2" id="emplist2" value="" class="form-control" required='true'>
-    -->
-                              </select>
-                           </div>
-                           </div>
-                           <br>
                           <div class="field">
                               <div class="field">
                               <label class="label_field">Services Needed</label>

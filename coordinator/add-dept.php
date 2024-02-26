@@ -9,7 +9,7 @@ if (strlen($_SESSION['etmsaid']==0)) {
   {
 
  $deptname=$_POST['deptname'];
-$sql="insert into tbldepartment(DepartmentName)values(:deptname)";
+$sql="insert into tblrole(EmployeeRole)values(:deptname)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':deptname',$deptname,PDO::PARAM_STR);
 
